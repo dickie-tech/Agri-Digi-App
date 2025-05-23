@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMC Motors Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sign-up.css">
+    <!-- Firebase SDK v9 -->
+    <script type="module">
+    // Import Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBWAEi2gkVi4Ob__rHPRGwop4uNkk0GsXY",
+        authDomain: "cmc-motors-e9fee.firebaseapp.com",
+        projectId: "cmc-motors-e9fee",
+        storageBucket: "cmc-motors-e9fee.appspot.com",
+        messagingSenderId: "191822096484",
+        appId: "1:191822096484:web:458f32f77ffdcea9591771"
+    };
+
+    // Initialize Firebase app
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Firebase Auth
+    const auth = getAuth(app);
+
+    // Register user function
+    async function registerUser(event) {
+        event.preventDefault();
+
+        // Get form input values
+        const firstName = document.getElementById('register-first-name').value;
+        const lastName = document.getElementById('register-last-name').value;
+        const email = document.getElementById('register-address').value;
+        const password = document.getElementById('register-password').value;
+
+        // Clear messages
+        document.getElementById("error-message").textContent = "";
+        document.getElementById("success-message").textContent = "";
+
+        // Show loading
+        const loadingIndicator = document.getElementById("loading-indicator");
+        loadingIndicator.style.display = "block";
+
+        try {
+            // Attempt to create a new user with Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            console.log("User registered:", user);
+
+            // Success feedback
+            document.getElementById("success-message").textContent = "Registration successful! Please log in.";
+        } catch (error) {
+            console.error("Error during registration:", error.message);
+            document.getElementById("error-message").textContent = "Error: " + error.message;
+        }
+
+        // Hide loading
+        loadingIndicator.style.display = "none";
+    }
+
+    // Bind the registration function to the form submit event
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', registerUser);
+    });
+</script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo-container">
+        <img class="brand-logo" src="images/AGRI-DIGI CBO Logo with Yellows and Greens2.png" alt="Logo">
+        <img class="logo-agri" src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Logo">
+    </div>
+    <div class="register-container">
+        
+        <h2>🌿Welcome to AGRI-DIGI</h2>
+        <h2>Register🤗</h2>
+        <form>
+            <label for="register-first-name">First Name:</label>
+            <input type="text" id="register-first-name" required><br>
+            
+            <label for="register-last-name">Last Name:</label>
+            <input type="text" id="register-last-name" required><br>
+
+            <label for="register-address">Email Address:</label>
+            <input type="email" id="register-address" required><br>
+            
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" required minlength="6"><br>
+
+            <button type="submit">Register</button>
+            <div id="loading-indicator" class="loading" style="display: none;">
+            Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+            </div>
+            
+            <div class="error-message" id="error-message"></div>
+            <div class="success-message" id="success-message"></div>
+        </form>
+
+        <div class="sign-up-link">
+            <p>👉If you already have an account, <a href="login.html">login here</a></p>
+        </div>
+    </div>
+  </div>
+  <script>
+    
+
+  </script>
+</body>
+</html>
