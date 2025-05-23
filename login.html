@@ -1,35 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login-page</title>
-  <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
   <div class="container">
-  <div>
-    <img src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Logo">
+    <div>
+      <img src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Logo" />
+    </div>
+    <div class="form-login">
+      <h1>Welcome back 😊</h1>
+      <h1>Login</h1>
+      <form id="login-form">
+        <label for="register-address">Email Address:</label>
+            <input type="email" id="register-address" required><br>
+            
+            <label for="register-password">Password:</label>
+            <input type="password" id="register-password" required minlength="6"><br>
+            
+        <button type="submit">Login</button>
+        <div style="margin-top: 20px;">
+          👉 Don’t have an account? <a href="sign-up.html">Sign up</a>
+        </div>
+        <div id="login-error" style="color: red; margin-top: 10px;"></div>
+      </form>
+    </div>
   </div>
-  <div class="form-login">
-    <h1>Welcome back😊</h1>
-    <h1>Login</h1>
-    <form action="/login" method="POST">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button type="submit">Login</button>
-      <div style="margin-top: 15px;">
-        👉Don’t have an account? <a href="sign-up.html">Sign up</a>
-      </div>
-    </form>
-  </div>
-</div>
 
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
+      authDomain: "agri-digi.firebaseapp.com",
+      projectId: "agri-digi",
+      storageBucket: "agri-digi.firebasestorage.app",
+      messagingSenderId: "75045066424",
+      appId: "1:75045066424:web:2f811fdd1347020fc4064d",
+      measurementId: "G-PV6WEHB1FV"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginForm = document.getElementById('login-form');
+    const errorDiv = document.getElementById('login-error');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      errorDiv.textContent = "";
+
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log("Logged in:", user);
+
+        // Redirect after successful login (optional)
+        window.location.href = "dashboard.html"; // replace with your actual dashboard URL
+      } catch (error) {
+        console.error("Login error:", error.message);
+        errorDiv.textContent = "Login failed: " + error.message;
+      }
+    });
+  </script>
 </body>
 </html>
