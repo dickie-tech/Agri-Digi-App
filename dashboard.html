@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <title>Document</title>
+</head>
+<body>
+  <section class="blur-section">
+    <div class="header-banner">
+      <div style="display: flex;"> <img class="brand-logo" src="images/Untitled design.png" alt="Logo"><div class="digi-logo">AGRI-DIGI CBO</div></div>
+      <div class="middle"style="display: flex;justify-content: space-between;">
+        <div class="home">🏠Home</a></div>
+        <div class="menu-group">
+          
+          <div class="nav-item" onclick="toggleDropdown('about-dropdown')">🧑‍🌾 About Us</div>
+          <div id="about-dropdown" class="dropdown">
+            <p>🌾 Our mission is to empower farmers through smart agriculture solutions.</p>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <div class="nav-item" onclick="toggleDropdown('services-dropdown')">🌱 Services</div>
+          <div id="services-dropdown" class="dropdown">
+            <ul>
+              <li>Soil Testing</li>
+              <li>Farm Mapping</li>
+              <li>Market Linkage</li>
+              <li>Digital Farmer Records</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="menu-group">
+          <div class="nav-item" onclick="toggleDropdown('contact-dropdown')">📞 Contact</div>
+          <div id="contact-dropdown" class="dropdown">
+            <p>Email: info@agri-digi.org</p>
+            <p>Phone: +254 712 345678</p>
+          </div>
+        </div>
+
+        
+      </div>
+      <div>
+        <a href="login.html"><button class="header-button">Get Started 💡</button></a>
+        
+      </div>
+      
+    </div>
+  </section>
+  <script>
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    const isVisible = dropdown.style.display === 'flex';
+
+    // Hide all dropdowns first
+    document.querySelectorAll('.dropdown').forEach(el => el.style.display = 'none');
+
+    // Show the clicked one only if it was hidden
+    if (!isVisible) {
+      dropdown.style.display = 'flex';
+    }
+  }
+</script>
+
+</body>
+</html>
