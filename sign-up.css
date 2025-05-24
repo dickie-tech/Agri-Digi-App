@@ -17,7 +17,7 @@ h2 {
 }
 .container {
   display: flex;
-  background-color: linear-gradient(to right, #427104, #76d008);
+ 
   flex-direction: row;
   justify-content: space-between;
   height: 100vh;
