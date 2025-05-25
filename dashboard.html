@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="dashboard.css">
-  <title>Document</title>
-</head>
-<body>
-  <section class="blur-section">
-    <div class="header-banner">
-      <div style="display: flex;"> <img class="brand-logo" src="images/Untitled design.png" alt="Logo"><div class="digi-logo">AGRI-DIGI CBO</div></div>
-      <div class="middle"style="display: flex;justify-content: space-between;">
-        <div class="home">🏠Home</a></div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="blur-section">
+      <div class="header-banner">
+        <div style="display: flex;"> <img class="brand-logo"
+            src="images/Untitled design.png" alt="Logo"><div
+            class="digi-logo">AGRI-DIGI CBO</div></div>
+        <div class="middle"
+          style="display: flex;justify-content: space-between;">
+          <div class="home">🏠Home</a></div>
         <div class="menu-group">
-          
-          <div class="nav-item" onclick="toggleDropdown('about-dropdown')">🧑‍🌾 About Us</div>
+
+          <div class="nav-item" onclick="toggleDropdown('about-dropdown')">🧑‍🌾
+            About Us</div>
           <div id="about-dropdown" class="dropdown">
-            <p>🌾 Our mission is to empower farmers through smart agriculture solutions.</p>
+            <p>🌾 Our mission is to empower farmers through smart agriculture
+              solutions.</p>
           </div>
         </div>
 
         <div class="menu-group">
-          <div class="nav-item" onclick="toggleDropdown('services-dropdown')">🌱 Services</div>
+          <div class="nav-item" onclick="toggleDropdown('services-dropdown')">🌱
+            Services</div>
           <div id="services-dropdown" class="dropdown">
             <ul>
               <li>Soil Testing</li>
@@ -36,23 +49,117 @@
         </div>
 
         <div class="menu-group">
-          <div class="nav-item" onclick="toggleDropdown('contact-dropdown')">📞 Contact</div>
+          <div class="nav-item" onclick="toggleDropdown('contact-dropdown')">📞
+            Contact</div>
           <div id="contact-dropdown" class="dropdown">
             <p>Email: info@agri-digi.org</p>
             <p>Phone: +254 712 345678</p>
           </div>
         </div>
 
-        
       </div>
       <div>
-        <a href="login.html"><button class="header-button">Get Started 💡</button></a>
-        
+        <a href="login.html"><button class="header-button">Get Started
+            💡</button></a>
+
       </div>
-      
+
     </div>
+    <div class="welcome-text">
+
+      <p class="welcome-subtext">Empowering Farmers Through Technology</p>
+    </div>
+    <h1 class="welcome-heading">Smart Farming for a Better Harvest.</h1>
+    <p class="welcome-subtext2">Join us in revolutionizing agriculture with
+      smart solutions.Agri Digi aims to provide aholistic approach to address
+      challenges andcreating opportunities in the agricultural sector.</p>
+    <button class="discover-btn"
+      onclick="document.getElementById('next-section').scrollIntoView({ behavior: 'smooth' });">
+      Discover More ➡️
+    </button>
+
   </section>
-  <script>
+  <section id="next-section" class="next-section">
+    <div id="next-section" style=" padding: 20px;">
+      <h2><u>OUR SERVICES</u></h2>
+      <p class="offer">Looking to deal with your aricultural troubles? 
+        <span class="typing">We offer a variety of services to help you succeed.</span>
+      </p>
+      <div class="services-section">
+        <div class="services">
+          <img
+            src="images/create an image of an agricultural expert talking to a farmer in the farm(note let them be africans) and let it look more realistic less ai generated.jpg">
+          <h1>Expert Advice</h1>
+
+          <p>Our expert advisory service connects you directly with experienced
+            agronomists, livestock specialists, and crop consultants who
+            understand your challenges and offer personalized solutions. From
+            soil preparation and pest control to modern farming techniques and
+            seasonal planning, we help you make informed decisions that boost
+            yields and reduce risks.Get expert answers, when and where you need
+            them—online, on your phone, or right on your farm.
+          </p>
+        </div>
+        <div class="services"><img
+            src="images/istockphoto-1454047113-612x612.jpg">
+          <h1>🛒 Market Linkage</h1>
+
+          <p>Connect directly with buyers, sellers, and fellow farmers to trade
+            agricultural produce easily. Stay updated with real-time market
+            prices and grow your profits through a trusted farmer-to-farmer
+            network.
+          </p></div>
+        <div class="services"><img
+            src="images/cattle-planning-farm-black-man-with-tablet-farming-agriculture-research-sustainability-smile-african-farmer-typing-tech-sustainable-business-animal-development_590464-189873.avif">
+          <h1>🐄 Livestock Monitoring</h1>
+
+          <p>
+            Keep your livestock healthy and productive with smart tools for
+            health tracking, vaccination reminders, and feed management. Monitor
+            breeding cycles and manage reproduction with ease—all from one
+            simple dashboard designed for farmers.
+          </p></div>
+
+      </div>
+      <div class="services-section">
+        <div class="services">
+          <img src="images/istockphoto-1409996877-612x612.jpg">
+          <h1>📊 Digital Recordkeeping</h1>
+
+          <p>
+            Simplify your farm management with easy-to-use digital tools. Record
+            daily activities, track expenses and profits, and generate detailed
+            yield reports. Make better decisions with organized, real-time farm
+            data at your fingertips.
+          </p>
+        </div>
+        <div class="services"><img
+            src="images/Digital-Agriculture-Solution-1.jpg">
+          <h1>🌱 Smart Farming Solutions</h1>
+
+          <p>
+            Boost productivity with technology-driven farming. Our smart tools
+            use IoT sensors to monitor soil moisture and temperature, provide
+            precision irrigation advice, and integrate accurate weather
+            forecasts—helping you make timely, data-informed decisions.
+          </p></div>
+        <div class="services"><img
+            src="images/360_F_1056572087_EezeYxAWkrurkx9ocJ7dn9WOBCIqtmeW.jpg">
+          <h1>👩‍🌾 Consultation Services(veterinary services)</h1>
+
+          <p>
+            Get professional support when you need it. Easily book sessions with
+            certified agronomists for crop advice, access on-demand veterinary
+            care for your livestock, and request soil testing or farm
+            inspections to improve productivity. Expert help is just a click
+            away.
+          </p></div>
+
+      </div>
+
+    </div>
+
+    <script>
   function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     const isVisible = dropdown.style.display === 'flex';
@@ -67,5 +174,5 @@
   }
 </script>
 
-</body>
+  </body>
 </html>

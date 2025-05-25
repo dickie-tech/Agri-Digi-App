@@ -91,7 +91,7 @@ body{
   color: yellowgreen;
 }
 .menu-group {
-  position: relative;  /* Anchor for dropdown positioning */
+  position: relative;  
   margin-bottom: 10px;
 }
 
@@ -151,3 +151,202 @@ body{
   cursor: pointer;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
+.welcome-text {
+  z-index: 2;
+  color: white;
+  position:absolute;
+
+}
+.welcome-subtext {
+  border: solid 2px darkgreen;
+  padding: 15px;
+  margin-top: 60px;
+  color: greenyellow;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 20px;
+  margin-left: 60px;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0px greenyellow;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px greenyellow;
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0px greenyellow;
+    transform: scale(1);
+  }
+}
+
+.welcome-heading {
+  font-size: 38px;
+  font-weight: bold;
+  color: rgba(219, 216, 216, 0.623);
+  margin-left: 40px;
+  margin-top: 150px;
+  position: absolute;
+  z-index: 2;
+  width: 300px;
+  
+  overflow: hidden;     /* Hide the text that hasn't "typed" yet */
+  border-right: 2px solid rgba(224, 219, 219, 0.623); /* Blinking cursor */
+  animation: typing 3s steps(30, end), blink 0.75s step-end infinite;
+}
+
+/* Typing keyframes */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 35ch; 
+  }
+}
+
+@keyframes blink {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(224, 219, 219, 0.623);
+  }
+}
+
+.welcome-subtext2 {
+  z-index: 2;
+  background-color: rgba(0, 100, 0, 0.3); /* semi-transparent dark green */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  position: absolute;
+  margin-top: 350px;
+  width: 300px;
+  font-size: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  margin-left: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth zoom */
+}
+
+/* Hover effect */
+.welcome-subtext2:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+  cursor: pointer;
+  background-color: rgb(67, 111, 2);
+}
+.discover-btn {
+  z-index: 2;
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  position: absolute;
+  margin-top: 550px;
+  margin-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.discover-btn:hover {
+  background-color: green;
+  transform: scale(1.05);
+}
+.next-section {
+  width: 100%;
+  height: 100%;
+  background-image: url('images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(0.3px);
+}
+.next-section h2{
+  margin-left: 550px;
+  font-size: 40px;
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+  color:#4b9001
+}
+.offer {
+  color: white;
+  font-size: 16px;
+  margin-left: 30px;
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 450px; /* enough width for text */
+}
+
+.typing {
+ display: inline-block;
+}
+.typing-fade span {
+  opacity: 0;
+  animation: fadeInLetter 0.5s forwards;
+}
+
+.typing-fade span:nth-child(1) { animation-delay: 0s; }
+.typing-fade span:nth-child(2) { animation-delay: 0.1s; }
+.typing-fade span:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes fadeInLetter {
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+.services {
+  height: 350px;
+  background-color: rgba(184, 134, 11, 0.3); 
+  backdrop-filter: blur(6px);              
+  -webkit-backdrop-filter: blur(6px);      
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-left: 20px;
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+}
+
+.services:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.services-section{
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr; 
+  width: 1400px;
+  column-gap: 10px;
+  margin-left: 60px;
+  margin-top: 50px;
+}
+.services img {
+  height: 200px;
+  width: 380px;
+  margin-top:10px;
+}
+.services p{
+  margin-top: -10px;
+  font-size: 11px;
+}
+.services h1{
+  margin-top: -5px;
+  font-size: 20px;
+  font-weight: bold;
+  color:#acd67f;
+}
+
