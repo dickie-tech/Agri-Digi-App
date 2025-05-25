@@ -3,31 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Page</title>
-  <link rel="stylesheet" href="login.css" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login2.css" />
+  <!-- You can include Boxicons if you're using the icons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 <body>
-  <div class="container">
-    <div>
-      <img src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Logo" />
-    </div>
-    <div class="form-login">
-      <h1>Welcome back 😊</h1>
+  <div class="wrapper">
+    <form id="login-form">
+      <h1>Welcome 😊</h1>
       <h1>Login</h1>
-      <form id="login-form">
-        <label for="register-address">Email Address:</label>
-            <input type="email" id="register-address" required><br>
-            
-            <label for="register-password">Password:</label>
-            <input type="password" id="register-password" required minlength="6"><br>
-            
-        <button type="submit">Login</button>
-        <div style="margin-top: 20px;">
-          👉 Don’t have an account? <a href="sign-up.html">Sign up</a>
-        </div>
-        <div id="login-error" style="color: red; margin-top: 10px;"></div>
-      </form>
-    </div>
+
+      <div class="input-box">
+        <input type="email" id="register-address" placeholder="Email" required />
+        <i class="bx bxs-user"></i>
+      </div>
+
+      <div class="input-box">
+        <input type="password" id="register-password" placeholder="Password" required />
+        <i class="bx bxs-lock-alt"></i>
+      </div>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox" /> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="sign-up.html">Register</a></p>
+      </div>
+
+      <div id="login-error" style="color:red; margin-top:10px;"></div>
+    </form>
   </div>
 
   <!-- Firebase SDK -->
@@ -35,19 +44,22 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
 
+    // Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
       authDomain: "agri-digi.firebaseapp.com",
       projectId: "agri-digi",
-      storageBucket: "agri-digi.firebasestorage.app",
+      storageBucket: "agri-digi.appspot.com",
       messagingSenderId: "75045066424",
       appId: "1:75045066424:web:2f811fdd1347020fc4064d",
       measurementId: "G-PV6WEHB1FV"
     };
 
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Login form handling
     const loginForm = document.getElementById('login-form');
     const errorDiv = document.getElementById('login-error');
 
@@ -62,9 +74,8 @@
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         console.log("Logged in:", user);
-
-        // Redirect after successful login (optional)
-        window.location.href = "dashboard.html"; // replace with your actual dashboard URL
+        // Redirect to dashboard
+        window.location.href = "dashboard.html"; // Change this to your actual dashboard
       } catch (error) {
         console.error("Login error:", error.message);
         errorDiv.textContent = "Login failed: " + error.message;
