@@ -14,6 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Anton&display=swap"
       rel="stylesheet">
     <link rel="stylesheet" href="dashboard.css">
+    <link rel="icon" href="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" type="image/png">
     <title>Document</title>
   </head>
   <body>
@@ -158,6 +159,20 @@
       </div>
 
     </div>
+    </section>
+    <section>
+      <div class="slider-container">
+        <div class="slider" id="slider">
+          <img src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Farm 1">
+          <img src="images/3fffa700-a915-42ec-8e69-61d9f0f8749c.jpg" alt="Farm 2">
+          <img src="images/3fffa700-a915-42ec-8e69-61d9f0f8749c.jpg" alt="Farm 3">
+          <img src="images/tractor.jpg" alt="Farm 4">
+        </div>
+        <button class="nav prev" onclick="moveSlide(-1)">❮</button>
+      <button class="nav next" onclick="moveSlide(1)">❯</button>
+      </div>
+
+    </section>
 
     <script>
   function toggleDropdown(id) {
@@ -172,6 +187,23 @@
       dropdown.style.display = 'flex';
     }
   }
+  let currentIndex = 0;
+  const slider = document.getElementById('slider');
+  const totalImages = slider.children.length;
+
+  function updateSlide(index) {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function moveSlide(step) {
+    currentIndex = (currentIndex + step + totalImages) % totalImages;
+    updateSlide(currentIndex);
+  }
+
+  // Auto-slide every 5 seconds
+  setInterval(() => {
+    moveSlide(1);
+  }, 5000);
 </script>
 
   </body>

@@ -109,3 +109,7 @@ body{
   margin-top: 40px;
   margin-right: 3px;
 }
+.bx bxs-lock-alt{
+  margin-top: 20px;
+  color: black;
+}

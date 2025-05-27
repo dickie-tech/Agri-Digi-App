@@ -34,41 +34,87 @@
         <!-- Step 1 -->
         <div class="step active">
           <h2>Step 1: Personal Info</h2>
-          <input type="text" placeholder="Full Name" required>
+          <input type="text" placeholder="First Name" required>
+          <input type="text" placeholder="Last Name" required>
           <input type="date" placeholder="Date of Birth" required>
+          <input type="email" placeholder="Email" required>
+          <input type="tel" placeholder="ID No." required>
+          <select required>
+            <option value="">Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer not say">Prefer not say</option>
+            </select>
+            <select required>
+            <option value="">Marital Status</option>
+            <option value="Male">Single</option>
+            <option value="Female">Married</option>
+            </select>
+          <input type="tel" placeholder="Phone Number" required>
           <button type="button" onclick="nextStep()">Next</button>
         </div>
 
         <!-- Step 2 -->
         <div class="step">
-          <h2>Step 2: Contact Info</h2>
-          <input type="email" placeholder="Email" required>
-          <input type="tel" placeholder="Phone Number" required>
+          <h2>Step 2: Location Info</h2>
+          <input type="Box No#" placeholder="Box No#" required>
+          <input type="tel" placeholder="Postal code" required>
+          <input type="email" placeholder="County" required>
+          <input type="tel" placeholder="Town/city" required>
+          <input type="email" placeholder="Constituency" required>
+          <input type="tel" placeholder="Ward" required>
           <button type="button" onclick="prevStep()">Back</button>
           <button type="button" onclick="nextStep()">Next</button>
         </div>
 
         <!-- Step 3 -->
         <div class="step">
-          <h2>Step 3: Address</h2>
-          <input type="text" placeholder="County" required>
-          <input type="text" placeholder="Town/City" required>
-          <button type="button" onclick="prevStep()">Back</button>
-          <button type="button" onclick="nextStep()">Next</button>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="step">
-          <h2>Step 4: Preferences</h2>
+          <h2>Step 3: Preferences</h2>
+          <select required>
+            <option value="">User Role</option>
+            <option value="livestock">Farmer</option>
+            <option value="crop">Buyer</option>
+            <option value="both">Extension Officer</option>
+          </select>
           <select required>
             <option value="">Select Interest</option>
             <option value="livestock">Livestock</option>
             <option value="crop">Crop Farming</option>
             <option value="both">Both</option>
           </select>
+          
+          <button type="button" onclick="prevStep()">Back</button>
+          <button type="button" onclick="nextStep()">Next</button>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step">
+          <h2>Step 4: Preferences & Profile Picture</h2>
+          
+          <label for="interest">Username</label>
+          <input type="email" placeholder="Username" required>
+
+          <label for="profilePicture" style="margin-top: 15px; display: block;">Upload Profile Picture:</label>
+          <input 
+            type="file" 
+            id="profilePicture" 
+            name="profilePicture" 
+            accept="image/*" 
+            required
+            onchange="previewImage(event)"
+          />
+
+          <!-- Image preview -->
+          <div style="margin-top: 10px;">
+            <img id="imagePreview" src="#" alt="Profile Preview" style="display:none; max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover;"/>
+          </div>
+
           <button type="button" onclick="prevStep()">Back</button>
           <button type="submit">Finish</button>
         </div>
+
+
+
       </form>
     </div>
   </div>
@@ -78,6 +124,18 @@
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
     }
+  function previewImage(event) {
+    const preview = document.getElementById('imagePreview');
+    const file = event.target.files[0];
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+    } else {
+      preview.src = '#';
+      preview.style.display = 'none';
+    }
+  }
+
   </script>
 </body>
 </html>
