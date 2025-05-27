@@ -1,49 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile Setup</title>
   <link rel="stylesheet" href="profile.css">
-  <!-- Firebase App (core SDK) -->
-<!-- Firebase App (compat) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<!-- Firebase Auth (compat) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-<!-- Firebase Firestore (compat) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-<!-- Firebase Storage (compat) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+  
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
-    authDomain: "agri-digi.firebaseapp.com",
-    projectId: "agri-digi",
-    storageBucket: "agri-digi.firebasestorage.app",
-    messagingSenderId: "75045066424",
-    appId: "1:75045066424:web:2f811fdd1347020fc4064d",
-    measurementId: "G-PV6WEHB1FV"
-  };
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
+      authDomain: "agri-digi.firebaseapp.com",
+      projectId: "agri-digi",
+      storageBucket: "agri-digi.firebasestorage.app",
+      messagingSenderId: "75045066424",
+      appId: "1:75045066424:web:2f811fdd1347020fc4064d",
+      measurementId: "G-PV6WEHB1FV"
+    };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
-  const storage = firebase.storage();
-</script>
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+  </script>
 
+  <link rel="icon" href="images/icons8-profile-24.png" type="image/png">
 </head>
 <body>
-  <!-- Menu Toggle Button -->
+
+  <!-- Sidebar Toggle -->
   <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <h2>User Menu</h2>
     <a href="#">Dashboard</a>
-    <a href="#">View Profile</a>
+    <a href="view-profile.html">View Profile</a>
     <a href="#">Edit Profile</a>
     <a href="#">Settings</a>
     <a href="login.html">Logout</a>
@@ -73,12 +70,12 @@
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Prefer not say">Prefer not say</option>
-            </select>
-            <select required>
+          </select>
+          <select required>
             <option value="">Marital Status</option>
-            <option value="Male">Single</option>
-            <option value="Female">Married</option>
-            </select>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+          </select>
           <input type="tel" placeholder="Phone Number" required>
           <button type="button" onclick="nextStep()">Next</button>
         </div>
@@ -86,7 +83,7 @@
         <!-- Step 2 -->
         <div class="step">
           <h2>Step 2: Location Info</h2>
-          <input type="Box No#" placeholder="Box No#" required>
+          <input type="text" placeholder="Box No#" required>
           <input type="text" placeholder="Postal code" required>
           <input type="text" placeholder="County" required>
           <input type="text" placeholder="Town/city" required>
@@ -101,9 +98,9 @@
           <h2>Step 3: Preferences</h2>
           <select required>
             <option value="">User Role</option>
-            <option value="livestock">Farmer</option>
-            <option value="crop">Buyer</option>
-            <option value="both">Extension Officer</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Buyer">Buyer</option>
+            <option value="Extension Officer">Extension Officer</option>
           </select>
           <select required>
             <option value="">Select Interest</option>
@@ -111,7 +108,6 @@
             <option value="crop">Crop Farming</option>
             <option value="both">Both</option>
           </select>
-          
           <button type="button" onclick="prevStep()">Back</button>
           <button type="button" onclick="nextStep()">Next</button>
         </div>
@@ -123,6 +119,7 @@
           <label for="interest">Username</label>
           <input type="text" placeholder="Username" required>
 
+          <!--
           <label for="profilePicture" style="margin-top: 15px; display: block;">Upload Profile Picture:</label>
           <input 
             type="file" 
@@ -133,16 +130,14 @@
             onchange="previewImage(event)"
           />
 
-          <!-- Image preview -->
           <div style="margin-top: 10px;">
             <img id="imagePreview" src="#" alt="Profile Preview" style="display:none; max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover;"/>
           </div>
+          -->
 
           <button type="button" onclick="prevStep()">Back</button>
           <button type="submit">Finish</button>
         </div>
-
-
 
       </form>
     </div>
@@ -153,18 +148,18 @@
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
     }
-  function previewImage(event) {
-    const preview = document.getElementById('imagePreview');
-    const file = event.target.files[0];
-    if (file) {
-      preview.src = URL.createObjectURL(file);
-      preview.style.display = 'block';
-    } else {
-      preview.src = '#';
-      preview.style.display = 'none';
-    }
-  }
 
+    function previewImage(event) {
+      const preview = document.getElementById('imagePreview');
+      const file = event.target.files[0];
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+      } else {
+        preview.src = '#';
+        preview.style.display = 'none';
+      }
+    }
   </script>
 </body>
 </html>
