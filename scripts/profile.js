@@ -29,57 +29,66 @@ function goToStep(index) {
   showStep(index);
 }
 
-// Handle form submission
-document.getElementById("profileForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("profileForm");
 
-  const form = e.target;
-  const profilePic = document.getElementById("profilePicture").files[0];
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const userData = {
-    firstName: form[0].value,
-    lastName: form[1].value,
-    dob: form[2].value,
-    email: form[3].value,
-    idNo: form[4].value,
-    gender: form[5].value,
-    maritalStatus: form[6].value,
-    phoneNumber: form[7].value,
-
-    boxNo: form[8].value,
-    postalCode: form[9].value,
-    county: form[10].value,
-    town: form[11].value,
-    constituency: form[12].value,
-    ward: form[13].value,
-
-    userRole: form[14].value,
-    interest: form[15].value,
-    username: form[16].value,
-    profilePicUrl: ""
-  };
-
-  try {
-    // Upload profile picture if exists
-    if (profilePic) {
-      const storageRef = firebase.storage().ref(`profile_pictures/${userData.username}_${Date.now()}`);
-      await storageRef.put(profilePic);
-      const downloadURL = await storageRef.getDownloadURL();
-      userData.profilePicUrl = downloadURL;
+    const user = firebase.auth().currentUser;
+    if (!user) {
+      alert("You must be logged in to complete your profile.");
+      return;
     }
 
-    // Save to Firestore
-    const user = firebase.auth().currentUser;
-    const uid = user ? user.uid : `anonymous_${Date.now()}`; // fallback for testing
+    const uid = user.uid;
+    const formFields = form.elements;
 
-    await firebase.firestore().collection("users").doc(uid).set(userData);
+    const userData = {
+      firstName: formFields[0].value,
+      lastName: formFields[1].value,
+      dob: formFields[2].value,
+      email: formFields[3].value,
+      idNo: formFields[4].value,
+      gender: formFields[5].value,
+      maritalStatus: formFields[6].value,
+      phoneNumber: formFields[7].value,
 
-    alert("Profile saved successfully!");
-    form.reset();
-    showStep(0);
-    document.getElementById("imagePreview").style.display = "none";
-  } catch (error) {
-    console.error("Error saving profile:", error);
-    alert("Something went wrong. Please try again.");
-  }
+      address: {
+        boxNo: formFields[8].value,
+        postalCode: formFields[9].value,
+        county: formFields[10].value,
+        town: formFields[11].value,
+        constituency: formFields[12].value,
+        ward: formFields[13].value,
+      },
+
+      preferences: {
+        userRole: formFields[14].value,
+        interest: formFields[15].value,
+      },
+
+      username: formFields[16].value,
+      profilePicUrl: "", // Keep field, but leave empty
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+
+    try {
+  // Skip image upload for now
+
+        await firebase.firestore().collection("profiles").doc(uid).set(userData);
+
+        alert("Profile saved successfully!");
+        form.reset();
+        showStep(0);
+
+        // Safe check for imagePreview element
+        const preview = document.getElementById("imagePreview");
+        if (preview) preview.style.display = "none";
+
+      } catch (error) {
+        console.error("Error saving profile:", error);
+        alert("Something went wrong. Please try again.");
+      }
+  });
 });
