@@ -2,7 +2,7 @@
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
-const { uploadFileToB2 } = require("./b2");
+const { uploadFileToB2 } = require("./B2");
 
 const app = express();
 app.use(cors());
