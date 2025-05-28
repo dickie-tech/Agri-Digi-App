@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Profile</title>
+  <link rel="stylesheet" href="profile.css" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
+      authDomain: "agri-digi.firebaseapp.com",
+      projectId: "agri-digi",
+      storageBucket: "agri-digi.appspot.com",
+      messagingSenderId: "75045066424",
+      appId: "1:75045066424:web:2f811fdd1347020fc4064d",
+      measurementId: "G-PV6WEHB1FV"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background-color: #263238;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #cfd8dc;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+
+    .sidebar a:hover {
+      background-color: #37474f;
+      color: #fff;
+    }
+
+    .profile-container {
+      flex-grow: 1;
+      padding: 30px;
+    }
+
+    .profile-box {
+      max-width: 800px;
+      margin: auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-box h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .profile-field {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 8px;
+      font-size: 16px;
+    }
+
+    .profile-field span {
+      font-weight: bold;
+      color: #37474f;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #00796b;
+      font-weight: bold;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>AgriDigi</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Edit Profile</a>
+      <a href="view-profile.html" style="background-color: #37474f;">View Profile</a>
+      <a href="logout.html">Logout</a>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-container">
+      <div class="profile-box">
+        <h2>Your Profile</h2>
+        <div id="profileDetails">
+          <p>Loading...</p>
+        </div>
+        <a class="back-link" href="profile.html">Edit Profile</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const uid = user.uid;
+        try {
+          const doc = await db.collection("profiles").doc(uid).get();
+          if (doc.exists) {
+            const data = doc.data();
+            const container = document.getElementById("profileDetails");
+
+            container.innerHTML = `
+              <div class="profile-field"><span>Name:</span> ${data.firstName} ${data.lastName}</div>
+              <div class="profile-field"><span>DOB:</span> ${data.dob}</div>
+              <div class="profile-field"><span>Email:</span> ${data.email}</div>
+              <div class="profile-field"><span>ID No:</span> ${data.idNo}</div>
+              <div class="profile-field"><span>Gender:</span> ${data.gender}</div>
+              <div class="profile-field"><span>Marital Status:</span> ${data.maritalStatus}</div>
+              <div class="profile-field"><span>Phone:</span> ${data.phoneNumber}</div>
+              <div class="profile-field"><span>Address:</span> 
+                P.O. Box ${data.address.boxNo}, ${data.address.postalCode}, ${data.address.town}, ${data.address.county}
+              </div>
+              <div class="profile-field"><span>Constituency:</span> ${data.address.constituency}</div>
+              <div class="profile-field"><span>Ward:</span> ${data.address.ward}</div>
+              <div class="profile-field"><span>Username:</span> ${data.username}</div>
+              <div class="profile-field"><span>User Role:</span> ${data.preferences.userRole}</div>
+              <div class="profile-field"><span>Interest:</span> ${data.preferences.interest}</div>
+            `;
+          } else {
+            document.getElementById("profileDetails").innerHTML = "<p>No profile data found.</p>";
+          }
+        } catch (error) {
+          console.error("Error fetching profile:", error);
+          document.getElementById("profileDetails").innerHTML = "<p>Error loading profile.</p>";
+        }
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</body>
+</html>
