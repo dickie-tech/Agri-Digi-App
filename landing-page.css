@@ -264,12 +264,15 @@ body{
   transform: scale(1.05);
 }
 .next-section {
+   background: url('images/Small Fresh Spring Green Leaf H5 Background Wallpaper Image For Free Download - Pngtree.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;        /* Covers the full area */
+  background-position: top right;/* Puts leaves in the top right */
   width: 100%;
-  height: 100%;
-  background-image: url('images/background.jpg');
-  background-size: cover;
-  background-position: center;
-  filter: blur(0.3px);
+  height: 150vh;
+  margin: 0;
+  padding: 0;
+  
 }
 .next-section h2{
   margin-left: 550px;
@@ -306,38 +309,187 @@ body{
     opacity: 1;
   }
 }
+.services-info{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+  
+  margin-left: 100px;
+  justify-content: space-between;
+  margin-top: 100px;
+}
 
+.profile-image{
+  height: 350px;
+  width: 350px;
+  border-radius: 175px; 
+  
+}
+.image-profile{
+  
+  margin-top: -100px;
+  border: solid 8px green;
+  border-radius: 80px;
+  height: 150px;
+  width: 150px;
+}
+.middle-services {
 
+  width: 500px;
+  margin-right: 40px;
+}
+.middle-services h1{
+  margin-left: 50px;
+  margin-top: 100px;
+  font-weight: bold;
+  font-size: 30px;
+}
+.middle-services p{
+  margin-left: 50px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: black;
+}
+.custom-bullets{
+  list-style-type: style type;
+  margin-left: 80px;
+}
+.box-info{
+  background-color: darkgreen;
+  width: 180px;
+  height: 180px;
+  border-radius: 2px;
+  margin-top: 20px;
+  padding: 20px;
+  margin-left: 20px;
+  
+  
+}
+.box-info h1{
+  color: white;
+  font-size: 24px;
+  margin-left: 10px;
+}
+.box-info2 h1{
+  color: black;
+  font-size: 24px;
+  margin-left: 20px;
+}
+.box-info,.box-info2 p {
+  font-size: 14px;
+  color: white;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.box-info2{
+  background-color: lightgreen;
+  width: 180px;
+  height: 150px;
+  border-radius: 2px;
+  margin-top: 20px;
+  padding: 20px;
+  margin-left: 20px;
+}
 
 .services {
+  width: 250px;
+  
+  
   height: 350px;
-  background-color: rgba(184, 134, 11, 0.3); 
+  background-color: white; 
   backdrop-filter: blur(6px);              
   -webkit-backdrop-filter: blur(6px);      
-  border-radius: 20px;
+  border-radius: 5px;
   padding-top: 10px;
   padding-left: 20px;
-  color: white;
+  color: black;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+  
 }
 
 .services:hover {
   transform: scale(1.05); 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+.info-header{
+  display: flex;
+  justify-content: space-between;
+}
+.tech{
+  width: 500px;
+}
+.tech h1{
+  color: green;
+  font-size: 20px;
+  font-weight: bold;margin-left: 30px;
+  
+}
+.tech p{
+  font-size: 36px;
+  margin-left: 20px;
+  font-weight: bold;
+  
+}
+.info-text{
+  margin-top: 100px;
+  width: 400px;
+  margin-right: 400px;
+}
+.info-text p{
+  font-size: 17px;
+}
+.info-text button{
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-left: 40px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.info-text button:hover {
+  background-color: green;
+  transform: scale(1.05);
+}
 .services-section{
+  
+  width: 97vw;
+  margin: auto;
+  height: 700px;
+  margin-right: 10px;
+  
+  Position: relative;
+  
+  margin-top: 70px;
+  background-color: rgb(199, 238, 199);
+}
+.services-div{
+  background-color: rgb(199, 238, 199);
+  position: absolute;
+  z-index: 3;
+  padding: 0;
+  height: 100px;
+  margin-top: 100px;
+  
+  
   display: grid; 
-  grid-template-columns: 1fr 1fr 1fr; 
-  width: 1400px;
-  column-gap: 10px;
-  margin-left: 60px;
-  margin-top: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  width: 70%;
+  
+  margin-left: 130px;
+  
+
 }
 .services img {
   height: 200px;
-  width: 380px;
+  width: 200px;
   margin-top:10px;
+  border-radius: 100px;
+  margin-left: 10px;
 }
 .services p{
   margin-top: -10px;
@@ -348,6 +500,36 @@ body{
   font-size: 20px;
   font-weight: bold;
   color:#acd67f;
+}
+.services-bottom{
+  background-color: rgb(3, 98, 3);
+  margin: auto;
+
+  height: 45vh;
+  width: 97vw;
+  z-index: 2;
+  position: absolute;
+  margin-top: 300px;
+}
+.services-footer h1{
+  margin-top: 180px;
+  margin-left: 500px;
+  color: rgb(218, 165, 32);
+
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+}
+.services-footer p {
+  color: rgba(165, 141, 6, 0.966);
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-left: 400px;
+  font-size: 35px;
+  margin-top: -16px;
+
 }
 .slider-container {
   position: relative;
@@ -397,3 +579,69 @@ body{
 .nav:hover {
   background-color: rgba(0,0,0,0.8);
 }
+.footer {
+  background-color: black; /* semi-transparent dark green */
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 4;
+  margin-top: 422px;
+  position: absolute;
+  width: 96.37vw;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer h3,
+.footer h4 {
+  color: #FFD700; /* gold */
+}
+
+.footer-about,
+.footer-links,
+.footer-contact,
+.footer-social {
+  flex: 1 1 220px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: #FFD700;
+}
+
+.social-icons a {
+  font-size: 24px;
+  margin-right: 15px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #FFD700;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  font-size: 14px;
+}
+
