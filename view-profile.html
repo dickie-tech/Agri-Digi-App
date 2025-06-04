@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>View Profile</title>
-  <link rel="stylesheet" href="profile.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Profile</title>
+    <link rel="stylesheet" href="profile.css" />
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <!-- Firebase SDKs -->
+    <script
+      src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
-  <script>
+    <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
       authDomain: "agri-digi.firebaseapp.com",
@@ -27,7 +30,7 @@
     const db = firebase.firestore();
   </script>
 
-  <style>
+    <style>
     * {
       box-sizing: border-box;
     }
@@ -117,31 +120,37 @@
       text-decoration: underline;
     }
   </style>
-</head>
-<body>
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <h2>AgriDigi</h2>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="profile.html">Edit Profile</a>
-      <a href="view-profile.html" style="background-color: #37474f;">View Profile</a>
-      <a href="login.html">Logout</a>
-    </div>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2>AgriDigi</h2>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Edit Profile</a>
+        <a href="view-profile.html" style="background-color: #37474f;">View
+          Profile</a>
+        <a href="#">Records</a>
+        <a href="#">Farmer reports</a>
+        <a href="#">Market-info</a>
+        <a href="#">FAQs & Expert Responses</a>
+        <a href="#">Success stories.</a>
+        <a href="login.html">Logout</a>
+      </div>
 
-    <!-- Profile Content -->
-    <div class="profile-container">
-      <div class="profile-box">
-        <h2>Your Profile</h2>
-        <div id="profileDetails">
-          <p>Loading...</p>
+      <!-- Profile Content -->
+      <div class="profile-container">
+        <div class="profile-box">
+          <h2>Your Profile</h2>
+          <div id="profileDetails">
+            <p>Loading...</p>
+          </div>
+          <a class="back-link" href="profile.html">Edit Profile</a>
         </div>
-        <a class="back-link" href="profile.html">Edit Profile</a>
       </div>
     </div>
-  </div>
 
-  <script>
+    <script>
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const uid = user.uid;
@@ -180,5 +189,5 @@
       }
     });
   </script>
-</body>
+  </body>
 </html>
