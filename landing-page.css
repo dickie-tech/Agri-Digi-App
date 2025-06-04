@@ -644,4 +644,112 @@ body{
   padding-top: 15px;
   font-size: 14px;
 }
+@media (max-width: 768px) {
+  .blur-section {
+    height: 500px;
+  }
+
+  .digi-logo, .welcome-heading {
+    font-size: 1.2rem;
+    margin-left: 20px;
+    margin-top: 60px;
+  }
+
+  .welcome-heading {
+    font-size: 24px;
+    width: 80%;
+  }
+
+  .welcome-subtext, .welcome-subtext2 {
+    margin-left: 20px;
+    width: 85%;
+    font-size: 16px;
+  }
+
+  .discover-btn {
+    margin-left: 20px;
+    margin-top: 480px;
+    padding: 10px 18px;
+    font-size: 16px;
+  }
+
+  .header-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .header-button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .services-info {
+    grid-template-columns: 1fr;
+    margin-left: 10px;
+    gap: 20px;
+  }
+
+  .services {
+    width: 90%;
+    margin: 10px auto;
+    height: auto;
+    padding-bottom: 20px;
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+  }
+
+  .image-profile {
+    width: 100px;
+    height: 100px;
+  }
+
+  .middle-services, .info-text {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .services-section {
+    height: auto;
+    padding-bottom: 100px;
+  }
+
+  .services-div {
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .next-section h2 {
+    margin-left: 20px;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .footer {
+    margin-top: 50px;
+    padding: 30px 10px;
+    width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-about, .footer-links, .footer-contact, .footer-social {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+  }
+}
 
