@@ -645,30 +645,65 @@ body{
   font-size: 14px;
 }
 @media (max-width: 768px) {
-  .blur-section {
-    height: 500px;
+  body{
+    margin: 0
   }
-
-  .digi-logo, .welcome-heading {
+  .blur-section {
+    height: 550px;
+  }
+  .brand-logo{
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+  }
+  .digi-logo{
+    font-size: 10px;
+    margin-top: 58px;
+    margin-left: 4px;
+    font-weight: 700;
+  }
+  .middle{
+    
+    margin-top: -80px;
+    margin-left: 52px;
+    column-gap: 5px;
+  }
+  .menu-group{
+    margin-left: -30px;
+    column-gap: 5px;
+  }
+  .header-button{
+  
+  }
+  .welcome-text{
+    margin-top: 20px;
+  }
+  
+  .welcome-heading {
     font-size: 1.2rem;
     margin-left: 20px;
-    margin-top: 60px;
+    margin-top: 145px;
   }
 
   .welcome-heading {
     font-size: 24px;
     width: 80%;
   }
-
-  .welcome-subtext, .welcome-subtext2 {
+  .welcome-subtext2{
+    margin-top: 270px;
+    width: 45%;
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  .welcome-subtext {
     margin-left: 20px;
     width: 85%;
     font-size: 16px;
   }
 
   .discover-btn {
-    margin-left: 20px;
-    margin-top: 480px;
+    margin-left: 300px;
+    margin-top: 310px;
     padding: 10px 18px;
     font-size: 16px;
   }
@@ -685,7 +720,8 @@ body{
   }
 
   .services-info {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     margin-left: 10px;
     gap: 20px;
   }
@@ -697,34 +733,75 @@ body{
     padding-bottom: 20px;
   }
 
-  .profile-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 100px;
+  .profile-image, .image-profile {
+    display: none;
   }
 
-  .image-profile {
-    width: 100px;
-    height: 100px;
+  
+  .next-section{
+    width: 100%;
   }
-
-  .middle-services, .info-text {
+  .middle-services{
+    width: 100%;
+    margin-top: -200px;
+    margin-left: -30px;
+   
+    } 
+  .box-containers{
+    display: flex;
+  }
+  .info-header{
+    display: flex;
+    flex-direction: column;
+  }
+  .info-text {
     width: 90%;
     margin: 10px auto;
+    display: flex;
+    flex-direction: column;
   }
-
+  .info-text button{
+    margin-right: 30px;
+  }
   .services-section {
-    height: auto;
+    height: 100%;
     padding-bottom: 100px;
+    background-color: rgb(225, 248, 225);
+    
+    margin-left: -18px;
+    position: relative;
   }
 
   .services-div {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 50px;
+    background-color: rgb(228, 244, 228);
   }
-
+  .services img{
+    height: 100px;
+    width: 100px;
+  }
+  .services-bottom{
+    z-index: 3;
+    margin-top: 600px;
+    height: 30%;
+  }
+  .services-footer h1{
+    font-size: 20px;
+    margin-left: 10px;
+    margin-top: 120px;
+  }
+  .services-footer p{
+    font-size: 16px;
+    margin-left: 200px;
+    margin-top: -25px;
+  }
   .next-section h2 {
     margin-left: 20px;
     font-size: 28px;
@@ -732,9 +809,9 @@ body{
   }
 
   .footer {
-    margin-top: 50px;
+    margin-top: 635px;
     padding: 30px 10px;
-    width: 100%;
+    width: 97%;
   }
 
   .footer-container {
@@ -745,11 +822,12 @@ body{
   .footer-about, .footer-links, .footer-contact, .footer-social {
     width: 100%;
     text-align: center;
-    margin-bottom: 20px;
+    
   }
 
   .footer-bottom {
     font-size: 12px;
   }
 }
+
 
