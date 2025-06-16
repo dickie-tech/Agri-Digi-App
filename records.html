@@ -4,70 +4,97 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Records</title>
+  <link rel="stylesheet" href="profile.css">
+
   <style>
-    body {
-      display: flex;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f9f6;
+    .main {
+      margin-left: 260px;
+      padding: 20px;
     }
+
+    .menu-toggle {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      display: none;
+    }
+
     .sidebar {
       width: 250px;
       background-color: #123d37;
       color: white;
       height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
       padding: 20px;
     }
-    .sidebar h3 {
+
+    .sidebar h2 {
       margin-top: 0;
     }
+
     .sidebar a {
       display: block;
       color: white;
       text-decoration: none;
       margin: 15px 0;
     }
-    .main-content {
-      flex: 1;
-      padding: 40px;
-    }
-    .main-content h2 {
+
+    .record-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
     }
+
+    .record-header h2 {
+      margin: 0;
+    }
+
     .controls {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 20px;
     }
-    .controls input, .controls select {
+
+    .controls input, .controls select, .add-record-btn {
       padding: 10px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
+
     .add-record-btn {
-      padding: 10px 20px;
       background-color: #1abc9c;
       color: white;
-      border: none;
-      border-radius: 5px;
       cursor: pointer;
+      border: none;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       background-color: white;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      margin-top: 300px;
+      margin-left: -250px;
     }
+
     th, td {
       padding: 12px;
       border: 1px solid #ddd;
       text-align: left;
     }
+
     th {
       background-color: #1abc9c;
       color: white;
     }
+
     .action-btns button {
       padding: 5px 10px;
       margin-right: 5px;
@@ -75,7 +102,12 @@
       border-radius: 3px;
       cursor: pointer;
     }
-    .delete-btn { background-color: #e74c3c; color: white; }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+    }
+
     .modal {
       display: none;
       position: fixed;
@@ -86,12 +118,14 @@
       align-items: center;
       z-index: 999;
     }
+
     .modal-content {
       background: white;
       padding: 20px;
       border-radius: 8px;
       width: 300px;
     }
+
     .modal-content input, .modal-content textarea {
       width: 100%;
       padding: 8px;
@@ -100,28 +134,41 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+
     @media (max-width: 768px) {
-      .sidebar { display: none; }
-      .main-content { padding: 20px; }
+      .sidebar {
+        display: none;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+      .main {
+        margin-left: 0;
+        padding: 20px;
+      }
+      
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h3>User Menu</h3>
-    <a href="#">Dashboard</a>
-    <a href="#">View Profile</a>
+  <div class="menu-toggle" onclick="toggleSidebar()">☰</div>
+  <div class="sidebar" id="sidebar">
+    <h2>User Menu</h2>
+    <a href="profile.html">Home</a>
+    <a href="view-profile.html">View Profile</a>
     <a href="#">Edit Profile</a>
-    <a href="#">Records</a>
-    <a href="#">Farmer Reports</a>
-    <a href="#">Market-info</a>
+    <a href="records.html">Records</a>
+    <a href="#">Farmer reports</a>
+    <a href="market.html">Market-info</a>
     <a href="#">FAQs & Expert Responses</a>
-    <a href="#">Success stories</a>
-    <a href="#">Logout</a>
+    <a href="#">Success stories.</a>
+    <a href="login.html">Logout</a>
   </div>
 
-  <div class="main-content">
-    <h2>My Farm Records</h2>
+  <div class="main">
+    <div class="record-header">
+      <h2>My Farm Records</h2>
+    </div>
     <div class="controls">
       <input type="text" id="searchInput" placeholder="Search summary..." />
       <select id="filterType">
@@ -129,6 +176,7 @@
         <option value="Crop Yield">Crop Yield</option>
         <option value="Livestock Sales">Livestock Sales</option>
       </select>
+      <button class="add-record-btn" onclick="downloadSpreadsheet()">⬇ Download Spreadsheet</button>
       <button class="add-record-btn" onclick="openModal()">+ Add Record</button>
     </div>
     <table>
@@ -161,7 +209,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
@@ -182,6 +230,10 @@
     const recordTable = document.getElementById("recordTable");
     const searchInput = document.getElementById("searchInput");
     const filterType = document.getElementById("filterType");
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
 
     function openModal() {
       document.getElementById("recordModal").style.display = "flex";
@@ -265,6 +317,45 @@
         window.location.href = "login.html";
       }
     });
+
+    async function downloadSpreadsheet() {
+  try {
+    const snapshot = await db.collection("records")
+      .doc(currentUser.uid)
+      .collection("items")
+      .orderBy("date", "desc")
+      .get();
+
+    const data = [];
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      const matchSummary = d.summary?.toLowerCase().includes(searchInput.value.toLowerCase());
+      const matchType = !filterType.value || d.type === filterType.value;
+      if (matchSummary && matchType) {
+        data.push({
+          Type: d.type,
+          Date: d.date,
+          Summary: d.summary
+        });
+      }
+    });
+
+    if (data.length === 0) {
+      alert("No records to export based on your current filter/search.");
+      return;
+    }
+
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Farm Records");
+
+    XLSX.writeFile(workbook, "Farm_Records.xlsx");
+  } catch (error) {
+    console.error("Error exporting spreadsheet:", error);
+    alert("Failed to download spreadsheet.");
+  }
+}
+
   </script>
 </body>
 </html>
