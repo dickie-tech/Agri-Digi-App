@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reports</title>
   <style>
-    body{
+    body {
       margin: 0;
-      background-color:rgb(227, 242, 237);
+      background-color: rgb(227, 242, 237);
     }
-    .report-header h1{
+    .report-header h1 {
       margin-left: 20px;
-      font-family:Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       font-weight: 700;
     }
-    .report-header p{
+    .report-header p {
       margin-left: 20px;
       color: gray;
     }
-    .parent-container{
+    .parent-container {
       margin-top: 25px;
       display: flex;
       flex-direction: row;
       gap: 120px;
       margin-left: 200px;
     }
-    .parent-container div{
+    .parent-container div {
       border-radius: 10px;
-      border-color: white;
       background-color: white;
       width: 300px;
       height: 180px;
     }
-    .price{
+    .price {
       margin-left: 20px;
       color: gray;
     }
-    .parent-container h2{
+    .parent-container h2 {
       margin-top: 20px;
       font-weight: bold;
       color: black;
       margin-left: 20px;
     }
-    .price1{
+    .price1 {
       font-size: 26px;
       margin-left: 20px;
       color: rgb(5, 179, 5);
     }
-    .price2{
+    .price2 {
       font-size: 26px;
       margin-left: 20px;
       color: orangered;
     }
-    .price3{
+    .price3 {
       font-size: 26px;
       margin-left: 20px;
       color: purple;
     }
-    .budget-buttons{
+    .budget-buttons {
       margin-top: 30px;
       display: flex;
       background-color: white;
       width: 30%;
       height: 50px;
       border-radius: 10px;
-      gap: 80px;
+      gap: 40px;
       margin-left: 60px;
+      align-items: center;
+      padding-left: 20px;
     }
-    .budget-buttons button{
+    .budget-buttons button {
       background-color: white;
       border: none;
       cursor: pointer;
-      margin-left: 30px;
       color: gray;
-      font-family:Verdana, Geneva, Tahoma, sans-serif;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-    .budget-buttons button:hover{
+    .budget-buttons button:hover {
       color: black;
     }
-    .table-report{
+    .table-report {
       background-color: white;
-      margin-left: 20px;
-      margin-right: 20px;
+      margin: 20px;
+      padding: 10px;
     }
-    .table-report h1{
+    .table-report h1 {
       font-size: 20px;
       font-family: Arial, Helvetica, sans-serif;
       margin-left: 20px;
@@ -96,102 +96,106 @@
       width: 90%;
       border-collapse: collapse;
       background-color: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      margin-top: 20px;
-      margin-right: 20px;
-      margin-left: 30px;
-      
+      margin: 20px auto;
     }
-
     th, td {
       padding: 12px;
       border: 1px solid #ddd;
       text-align: left;
     }
-
     th {
-      background-color: white;
       color: rgb(77, 75, 75);
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    .annual, .monthly{
+    .table-section {
       display: none;
     }
-    .home-button, .add-button, .delete-button{
+    .active {
+      display: block !important;
+    }
+    .chart-container {
+      display: none;
+      width: 90%;
+      margin: 30px auto;
+      height: 50vh;
+    }
+    .home-button, .add-button, .delete-button {
       background-color: white;
       color: black;
       border-radius: 5px;
       height: 30px;
-      border-color: white;
+      border: none;
     }
-    .home-button:hover{
+    .home-button:hover {
       cursor: pointer;
-      background-color:rgb(78, 91, 78);
+      background-color: rgb(78, 91, 78);
     }
-    .add-button{
+    .add-button {
       margin-left: 120px;
       background-color: rgba(8, 196, 8, 0.615);
     }
-    .delete-button{
+    .delete-button {
       margin-left: 30px;
       background-color: rgb(218, 72, 72);
     }
-    @media(max-width: 768px){
-      .parent-container{
+    @media (max-width: 768px) {
+      .parent-container {
         margin-left: 5px;
         gap: 5px;
       }
-      .parent-container div{
+      .parent-container div {
         width: 350px;
       }
-      .price1{
+      .price1 {
         font-size: 23px;
       }
-      .budget-buttons{
+      .budget-buttons {
         gap: 10px;
-        width: 60%;
+        width: 90%;
       }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 <body>
-  <a href="profile.html"><button class="home-button">Back To Profile</button></a> 
+  <a href="profile.html"><button class="home-button">Back To Profile</button></a>
   <div class="report-header">
     <h1>Farmer Reports</h1>
     <p>Comprehensive agricultural performance analytics and insights.</p>
   </div>
+
   <div class="parent-container">
     <div>
       <h2>Total revenue $</h2>
-      
       <p class="price1">KES. 195,000</p>
       <p class="price">+12% from last year</p>
     </div>
     <div>
       <h2>Total Produce</h2>
-      
       <p class="price2">4,200 Kg</p>
       <p class="price">This month</p>
     </div>
     <div>
       <h2>Avg Income $</h2>
-      
       <p class="price3">KES.1500</p>
       <p class="price">Per month</p>
+    </div>
   </div>
-  </div>
+
   <div class="budget-buttons">
-    <button>Weekly</button>
-    <button >Monthly</button>
-    <button onclick="toggleSidebar()">Annual</button>
+    <button onclick="showReport('weekly')">Weekly</button>
+    <button onclick="showReport('monthly')">Monthly</button>
+    <button onclick="showReport('annual')">Annual</button>
   </div>
-  <div class="table-report" id="weekly">
+
+  <!-- Weekly -->
+  <div id="weekly" class="table-report table-section active">
     <h1>Weekly Activity Report</h1>
-    <p>Recent farmer activities and sales data <button class="add-button">Add Record</button>
-    <button class="delete-button">Delete Record</button></p>
-    <table class="record-table">
+    <p>Recent farmer activities and sales data
+      <button class="add-button">Add Record</button>
+      <button class="delete-button">Delete Record</button>
+    </p>
+    <table>
       <thead>
         <tr>
           <th>Produce</th>
@@ -199,17 +203,20 @@
           <th>Income</th>
           <th>Date</th>
           <th>Status</th>
-
         </tr>
       </thead>
       <tbody></tbody>
     </table>
   </div>
-  <canvas id="weeklyChart" width="600" height="300" style="margin: 30px auto; display: block;"></canvas>
-  <div class="table-report monthly" id="monthly">
+  <div id="weeklyChartContainer" class="chart-container active">
+    <canvas id="weeklyChart" height="300"></canvas>
+  </div>
+
+  <!-- Monthly -->
+  <div id="monthly" class="table-report table-section">
     <h1>Monthly Activity Report</h1>
-    <p>Recent farmer activities and sales data </p>
-    <table class="record-table">
+    <p>Recent farmer activities and sales data</p>
+    <table>
       <thead>
         <tr>
           <th>Produce</th>
@@ -217,16 +224,20 @@
           <th>Income</th>
           <th>Date</th>
           <th>Status</th>
-
         </tr>
       </thead>
       <tbody></tbody>
     </table>
   </div>
-  <div class="table-report annual" id="annual">
+  <div id="monthlyChartContainer" class="chart-container">
+    <canvas id="monthlyChart" height="300"></canvas>
+  </div>
+
+  <!-- Annual -->
+  <div id="annual" class="table-report table-section">
     <h1>Annual Activity Report</h1>
-    <p>Recent farmer activities and sales data </p>
-    <table class="record-table">
+    <p>Recent farmer activities and sales data</p>
+    <table>
       <thead>
         <tr>
           <th>Produce</th>
@@ -234,67 +245,108 @@
           <th>Income</th>
           <th>Date</th>
           <th>Status</th>
-
         </tr>
       </thead>
       <tbody></tbody>
     </table>
   </div>
+  <div id="annualChartContainer" class="chart-container">
+    <canvas id="annualChart" height="300"></canvas>
+  </div>
+
   <script>
-  function toggleSidebar() {
-    document.getElementById("annual").classList.toggle("inactive");
-  }
+    function showReport(section) {
+      const sections = ['weekly', 'monthly', 'annual'];
+      sections.forEach(s => {
+        document.getElementById(s).classList.remove('active');
+        document.getElementById(s + 'ChartContainer').classList.remove('active');
+      });
 
-  // Sample weekly data
-  const weeklyLabels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
-  const produceData = [900, 1200, 800, 1300]; // Example produce quantity per week
-  const incomeData = [15000, 20000, 13000, 22000]; // Corresponding income
+      document.getElementById(section).classList.add('active');
+      document.getElementById(section + 'ChartContainer').classList.add('active');
+    }
 
-  const ctx = document.getElementById('weeklyChart').getContext('2d');
-  const weeklyChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: weeklyLabels,
-      datasets: [
-        {
-          label: 'Produce (kg)',
-          data: produceData,
-          backgroundColor: 'rgba(5, 179, 5, 0.6)',
-          borderColor: 'rgba(5, 179, 5, 1)',
-          borderWidth: 1
-        },
-        {
-          label: 'Income (KES)',
-          data: incomeData,
-          backgroundColor: 'rgba(255, 99, 132, 0.6)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        title: {
-          display: true,
-          text: 'Weekly Produce vs Income',
-          font: {
-            size: 18
+    // Weekly Bar Chart
+    const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
+    new Chart(weeklyCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [
+          {
+            label: 'Produce (kg)',
+            data: [900, 1200, 800, 1300],
+            backgroundColor: 'rgba(5, 179, 5, 0.6)'
+          },
+          {
+            label: 'Income (KES)',
+            data: [15000, 20000, 13000, 22000],
+            backgroundColor: 'rgba(255, 99, 132, 0.6)'
           }
-        }
+        ]
       },
-      scales: {
-        y: {
-          beginAtZero: true,
+      options: {
+        responsive: true,
+        plugins: {
           title: {
             display: true,
-            text: 'Amount'
+            text: 'Weekly Produce vs Income'
           }
         }
       }
-    }
-  });
-</script>
+    });
 
+    // Monthly Pie Chart
+    const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+    new Chart(monthlyCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Maize', 'Beans', 'Tomatoes', 'Onions'],
+        datasets: [{
+          data: [400, 300, 200, 100],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 205, 86, 0.6)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Monthly Produce Distribution'
+          }
+        }
+      }
+    });
+
+    // Annual Line Chart
+    const annualCtx = document.getElementById('annualChart').getContext('2d');
+    new Chart(annualCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Annual Revenue (KES)',
+          data: [15000, 18000, 20000, 24000, 22000, 26000],
+          borderColor: 'rgba(54, 162, 235, 1)',
+          fill: false,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Annual Revenue Trend'
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>
