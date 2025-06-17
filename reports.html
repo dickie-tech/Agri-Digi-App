@@ -153,6 +153,8 @@
       }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
   <a href="profile.html"><button class="home-button">Back To Profile</button></a> 
@@ -203,6 +205,7 @@
       <tbody></tbody>
     </table>
   </div>
+  <canvas id="weeklyChart" width="600" height="300" style="margin: 30px auto; display: block;"></canvas>
   <div class="table-report monthly" id="monthly">
     <h1>Monthly Activity Report</h1>
     <p>Recent farmer activities and sales data </p>
@@ -238,9 +241,60 @@
     </table>
   </div>
   <script>
-    function toggleSidebar() {
-      document.getElementById("annual").classList.toggle("inactive");
+  function toggleSidebar() {
+    document.getElementById("annual").classList.toggle("inactive");
+  }
+
+  // Sample weekly data
+  const weeklyLabels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+  const produceData = [900, 1200, 800, 1300]; // Example produce quantity per week
+  const incomeData = [15000, 20000, 13000, 22000]; // Corresponding income
+
+  const ctx = document.getElementById('weeklyChart').getContext('2d');
+  const weeklyChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: weeklyLabels,
+      datasets: [
+        {
+          label: 'Produce (kg)',
+          data: produceData,
+          backgroundColor: 'rgba(5, 179, 5, 0.6)',
+          borderColor: 'rgba(5, 179, 5, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Income (KES)',
+          data: incomeData,
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Weekly Produce vs Income',
+          font: {
+            size: 18
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Amount'
+          }
+        }
+      }
     }
-  </script>
+  });
+</script>
+
 </body>
 </html>
