@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports</title>
+  <style>
+    body{
+      margin: 0;
+      background-color:rgb(227, 242, 237);
+    }
+    .report-header h1{
+      margin-left: 20px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight: 700;
+    }
+    .report-header p{
+      margin-left: 20px;
+      color: gray;
+    }
+    .parent-container{
+      margin-top: 25px;
+      display: flex;
+      flex-direction: row;
+      gap: 120px;
+      margin-left: 200px;
+    }
+    .parent-container div{
+      border-radius: 10px;
+      border-color: white;
+      background-color: white;
+      width: 300px;
+      height: 180px;
+    }
+    .price{
+      margin-left: 20px;
+      color: gray;
+    }
+    .parent-container h2{
+      margin-top: 20px;
+      font-weight: bold;
+      color: black;
+      margin-left: 20px;
+    }
+    .price1{
+      font-size: 26px;
+      margin-left: 20px;
+      color: rgb(5, 179, 5);
+    }
+    .price2{
+      font-size: 26px;
+      margin-left: 20px;
+      color: orangered;
+    }
+    .price3{
+      font-size: 26px;
+      margin-left: 20px;
+      color: purple;
+    }
+    .budget-buttons{
+      margin-top: 30px;
+      display: flex;
+      background-color: white;
+      width: 30%;
+      height: 50px;
+      border-radius: 10px;
+      gap: 80px;
+      margin-left: 60px;
+    }
+    .budget-buttons button{
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 30px;
+      color: gray;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .budget-buttons button:hover{
+      color: black;
+    }
+    .table-report{
+      background-color: white;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .table-report h1{
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-left: 20px;
+    }
+    .table-report p {
+      color: gray;
+      margin-left: 20px;
+    }
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      margin-top: 20px;
+      margin-right: 20px;
+      margin-left: 30px;
+      
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background-color: white;
+      color: rgb(77, 75, 75);
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .annual, .monthly{
+      display: none;
+    }
+    .home-button, .add-button, .delete-button{
+      background-color: white;
+      color: black;
+      border-radius: 5px;
+      height: 30px;
+      border-color: white;
+    }
+    .home-button:hover{
+      cursor: pointer;
+      background-color:rgb(78, 91, 78);
+    }
+    .add-button{
+      margin-left: 120px;
+      background-color: rgba(8, 196, 8, 0.615);
+    }
+    .delete-button{
+      margin-left: 30px;
+      background-color: rgb(218, 72, 72);
+    }
+    @media(max-width: 768px){
+      .parent-container{
+        margin-left: 5px;
+        gap: 5px;
+      }
+      .parent-container div{
+        width: 350px;
+      }
+      .price1{
+        font-size: 23px;
+      }
+      .budget-buttons{
+        gap: 10px;
+        width: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="profile.html"><button class="home-button">Back To Profile</button></a> 
+  <div class="report-header">
+    <h1>Farmer Reports</h1>
+    <p>Comprehensive agricultural performance analytics and insights.</p>
+  </div>
+  <div class="parent-container">
+    <div>
+      <h2>Total revenue $</h2>
+      
+      <p class="price1">KES. 195,000</p>
+      <p class="price">+12% from last year</p>
+    </div>
+    <div>
+      <h2>Total Produce</h2>
+      
+      <p class="price2">4,200 Kg</p>
+      <p class="price">This month</p>
+    </div>
+    <div>
+      <h2>Avg Income $</h2>
+      
+      <p class="price3">KES.1500</p>
+      <p class="price">Per month</p>
+  </div>
+  </div>
+  <div class="budget-buttons">
+    <button>Weekly</button>
+    <button >Monthly</button>
+    <button onclick="toggleSidebar()">Annual</button>
+  </div>
+  <div class="table-report" id="weekly">
+    <h1>Weekly Activity Report</h1>
+    <p>Recent farmer activities and sales data <button class="add-button">Add Record</button>
+    <button class="delete-button">Delete Record</button></p>
+    <table class="record-table">
+      <thead>
+        <tr>
+          <th>Produce</th>
+          <th>Quantity</th>
+          <th>Income</th>
+          <th>Date</th>
+          <th>Status</th>
+
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="table-report monthly" id="monthly">
+    <h1>Monthly Activity Report</h1>
+    <p>Recent farmer activities and sales data </p>
+    <table class="record-table">
+      <thead>
+        <tr>
+          <th>Produce</th>
+          <th>Quantity</th>
+          <th>Income</th>
+          <th>Date</th>
+          <th>Status</th>
+
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="table-report annual" id="annual">
+    <h1>Annual Activity Report</h1>
+    <p>Recent farmer activities and sales data </p>
+    <table class="record-table">
+      <thead>
+        <tr>
+          <th>Produce</th>
+          <th>Quantity</th>
+          <th>Income</th>
+          <th>Date</th>
+          <th>Status</th>
+
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <script>
+    function toggleSidebar() {
+      document.getElementById("annual").classList.toggle("inactive");
+    }
+  </script>
+</body>
+</html>
