@@ -156,6 +156,10 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 </head>
 <body>
   <a href="profile.html"><button class="home-button">Back To Profile</button></a>
@@ -253,100 +257,125 @@
   <div id="annualChartContainer" class="chart-container">
     <canvas id="annualChart" height="300"></canvas>
   </div>
+<script>
+  function showReport(section) {
+    const sections = ['weekly', 'monthly', 'annual'];
+    sections.forEach(s => {
+      document.getElementById(s).classList.remove('active');
+      document.getElementById(s + 'ChartContainer').classList.remove('active');
+    });
 
-  <script>
-    function showReport(section) {
-      const sections = ['weekly', 'monthly', 'annual'];
-      sections.forEach(s => {
-        document.getElementById(s).classList.remove('active');
-        document.getElementById(s + 'ChartContainer').classList.remove('active');
-      });
+    document.getElementById(section).classList.add('active');
+    document.getElementById(section + 'ChartContainer').classList.add('active');
+  }
 
-      document.getElementById(section).classList.add('active');
-      document.getElementById(section + 'ChartContainer').classList.add('active');
+  // Handle Add and Delete Buttons
+  const weeklyTableBody = document.querySelector("#weekly tbody");
+  const addButton = document.querySelector(".add-button");
+  const deleteButton = document.querySelector(".delete-button");
+
+  addButton.addEventListener("click", () => {
+    // Dummy data for new row
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td>Maize</td>
+      <td>150</td>
+      <td>KES. 3500</td>
+      <td>${new Date().toLocaleDateString()}</td>
+      <td><span style="color: green;">Completed</span></td>
+    `;
+    weeklyTableBody.appendChild(newRow);
+  });
+
+  deleteButton.addEventListener("click", () => {
+    const rows = weeklyTableBody.querySelectorAll("tr");
+    if (rows.length > 0) {
+      weeklyTableBody.removeChild(rows[rows.length - 1]);
+    } else {
+      alert("No records to delete!");
     }
+  });
 
-    // Weekly Bar Chart
-    const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
-    new Chart(weeklyCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-        datasets: [
-          {
-            label: 'Produce (kg)',
-            data: [900, 1200, 800, 1300],
-            backgroundColor: 'rgba(5, 179, 5, 0.6)'
-          },
-          {
-            label: 'Income (KES)',
-            data: [15000, 20000, 13000, 22000],
-            backgroundColor: 'rgba(255, 99, 132, 0.6)'
-          }
+  // Chart setup remains unchanged
+  const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
+  new Chart(weeklyCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+      datasets: [
+        {
+          label: 'Produce (kg)',
+          data: [900, 1200, 800, 1300],
+          backgroundColor: 'rgba(5, 179, 5, 0.6)'
+        },
+        {
+          label: 'Income (KES)',
+          data: [15000, 20000, 13000, 22000],
+          backgroundColor: 'rgba(255, 99, 132, 0.6)'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Weekly Produce vs Income'
+        }
+      }
+    }
+  });
+
+  const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+  new Chart(monthlyCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Maize', 'Beans', 'Tomatoes', 'Onions'],
+      datasets: [{
+        data: [400, 300, 200, 100],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 205, 86, 0.6)'
         ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Weekly Produce vs Income'
-          }
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Monthly Produce Distribution'
         }
       }
-    });
+    }
+  });
 
-    // Monthly Pie Chart
-    const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
-    new Chart(monthlyCtx, {
-      type: 'pie',
-      data: {
-        labels: ['Maize', 'Beans', 'Tomatoes', 'Onions'],
-        datasets: [{
-          data: [400, 300, 200, 100],
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(255, 159, 64, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-            'rgba(255, 205, 86, 0.6)'
-          ]
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Monthly Produce Distribution'
-          }
+  const annualCtx = document.getElementById('annualChart').getContext('2d');
+  new Chart(annualCtx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [{
+        label: 'Annual Revenue (KES)',
+        data: [15000, 18000, 20000, 24000, 22000, 26000],
+        borderColor: 'rgba(54, 162, 235, 1)',
+        fill: false,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Annual Revenue Trend'
         }
       }
-    });
+    }
+  });
+</script>
 
-    // Annual Line Chart
-    const annualCtx = document.getElementById('annualChart').getContext('2d');
-    new Chart(annualCtx, {
-      type: 'line',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-          label: 'Annual Revenue (KES)',
-          data: [15000, 18000, 20000, 24000, 22000, 26000],
-          borderColor: 'rgba(54, 162, 235, 1)',
-          fill: false,
-          tension: 0.4
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Annual Revenue Trend'
-          }
-        }
-      }
-    });
-  </script>
 </body>
 </html>
