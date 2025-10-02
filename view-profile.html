@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>View Profile</title>
-    <link rel="stylesheet" href="profile.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Profile</title>
+  <link rel="stylesheet" href="profile.css" />
 
-    <!-- Firebase SDKs -->
-    <script
-      src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script
-      src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-    <script
-      src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
-    <script>
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
       authDomain: "agri-digi.firebaseapp.com",
@@ -30,10 +27,8 @@
     const db = firebase.firestore();
   </script>
 
-    <style>
-    * {
-      box-sizing: border-box;
-    }
+  <style>
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -120,37 +115,36 @@
       text-decoration: underline;
     }
   </style>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <h2>AgriDigi</h2>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="profile.html">Edit Profile</a>
-        <a href="view-profile.html" style="background-color: #37474f;">View
-          Profile</a>
-        <a href="#">Records</a>
-        <a href="#">Farmer reports</a>
-        <a href="#">Market-info</a>
-        <a href="#">FAQs & Expert Responses</a>
-        <a href="#">Success stories.</a>
-        <a href="login.html">Logout</a>
-      </div>
-
-      <!-- Profile Content -->
-      <div class="profile-container">
-        <div class="profile-box">
-          <h2>Your Profile</h2>
-          <div id="profileDetails">
-            <p>Loading...</p>
-          </div>
-          <a class="back-link" href="profile.html">Edit Profile</a>
-        </div>
-      </div>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>AgriDigi</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Edit Profile</a>
+      <a href="view-profile.html" style="background-color: #37474f;">View Profile</a>
+      <a href="records.html">Records</a>
+      <a href="reports.html">Farmer reports</a>
+      <a href="market.html">Market-info</a>
+      <a href="#">FAQs & Expert Responses</a>
+      <a href="#">Success stories.</a>
+      <a href="login.html">Logout</a>
     </div>
 
-    <script>
+    <!-- Profile Content -->
+    <div class="profile-container">
+      <div class="profile-box">
+        <h2>Your Profile</h2>
+        <div id="profileDetails">
+          <p>Loading...</p>
+        </div>
+        <a class="back-link" href="profile.html">Edit Profile</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         const uid = user.uid;
@@ -161,21 +155,21 @@
             const container = document.getElementById("profileDetails");
 
             container.innerHTML = `
-              <div class="profile-field"><span>Name:</span> ${data.firstName} ${data.lastName}</div>
-              <div class="profile-field"><span>DOB:</span> ${data.dob}</div>
-              <div class="profile-field"><span>Email:</span> ${data.email}</div>
-              <div class="profile-field"><span>ID No:</span> ${data.idNo}</div>
-              <div class="profile-field"><span>Gender:</span> ${data.gender}</div>
-              <div class="profile-field"><span>Marital Status:</span> ${data.maritalStatus}</div>
-              <div class="profile-field"><span>Phone:</span> ${data.phoneNumber}</div>
+              <div class="profile-field"><span>Name:</span> ${(data.firstName || "")} ${(data.lastName || "")}</div>
+              <div class="profile-field"><span>DOB:</span> ${data.dob || "N/A"}</div>
+              <div class="profile-field"><span>Email:</span> ${data.email || "N/A"}</div>
+              <div class="profile-field"><span>ID No:</span> ${data.idNo || "N/A"}</div>
+              <div class="profile-field"><span>Gender:</span> ${data.gender || "N/A"}</div>
+              <div class="profile-field"><span>Marital Status:</span> ${data.maritalStatus || "N/A"}</div>
+              <div class="profile-field"><span>Phone:</span> ${data.phone || "N/A"}</div>
               <div class="profile-field"><span>Address:</span> 
-                P.O. Box ${data.address.boxNo}, ${data.address.postalCode}, ${data.address.town}, ${data.address.county}
+                P.O. Box ${data.boxNo || "N/A"}, ${data.postalCode || "N/A"}, ${data.town || "N/A"}, ${data.county || "N/A"}
               </div>
-              <div class="profile-field"><span>Constituency:</span> ${data.address.constituency}</div>
-              <div class="profile-field"><span>Ward:</span> ${data.address.ward}</div>
-              <div class="profile-field"><span>Username:</span> ${data.username}</div>
-              <div class="profile-field"><span>User Role:</span> ${data.preferences.userRole}</div>
-              <div class="profile-field"><span>Interest:</span> ${data.preferences.interest}</div>
+              <div class="profile-field"><span>Constituency:</span> ${data.constituency || "N/A"}</div>
+              <div class="profile-field"><span>Ward:</span> ${data.ward || "N/A"}</div>
+              <div class="profile-field"><span>Username:</span> ${data.username || "N/A"}</div>
+              <div class="profile-field"><span>User Role:</span> ${data.role || "N/A"}</div>
+              <div class="profile-field"><span>Interest:</span> ${data.interest || "N/A"}</div>
             `;
           } else {
             document.getElementById("profileDetails").innerHTML = "<p>No profile data found.</p>";
@@ -189,5 +183,5 @@
       }
     });
   </script>
-  </body>
+</body>
 </html>

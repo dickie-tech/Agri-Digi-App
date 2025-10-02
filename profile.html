@@ -10,14 +10,13 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
 
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
       authDomain: "agri-digi.firebaseapp.com",
       projectId: "agri-digi",
-      storageBucket: "agri-digi.firebasestorage.app",
+      storageBucket: "agri-digi.appspot.com",
       messagingSenderId: "75045066424",
       appId: "1:75045066424:web:2f811fdd1347020fc4064d",
       measurementId: "G-PV6WEHB1FV"
@@ -26,7 +25,6 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
-    const storage = firebase.storage();
   </script>
 
   <link rel="icon" href="images/icons8-profile-24.png" type="image/png">
@@ -64,35 +62,35 @@
         <!-- Step 1 -->
         <div class="step active">
           <h2>Step 1: Personal Info</h2>
-          <input type="text" placeholder="First Name" required>
-          <input type="text" placeholder="Last Name" required>
-          <input type="date" placeholder="Date of Birth" required>
-          <input type="email" placeholder="Email" required>
-          <input type="tel" placeholder="ID No." required>
-          <select required>
+          <input type="text" name="firstName" placeholder="First Name" required>
+          <input type="text" name="lastName" placeholder="Last Name" required>
+          <input type="date" name="dob" placeholder="Date of Birth" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="idNo" placeholder="ID No." required>
+          <select name="gender" required>
             <option value="">Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Prefer not say">Prefer not say</option>
           </select>
-          <select required>
+          <select name="maritalStatus" required>
             <option value="">Marital Status</option>
             <option value="Single">Single</option>
             <option value="Married">Married</option>
           </select>
-          <input type="tel" placeholder="Phone Number" required>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
           <button type="button" onclick="nextStep()">Next</button>
         </div>
 
         <!-- Step 2 -->
         <div class="step">
           <h2>Step 2: Location Info</h2>
-          <input type="text" placeholder="Box No#" required>
-          <input type="text" placeholder="Postal code" required>
-          <input type="text" placeholder="County" required>
-          <input type="text" placeholder="Town/city" required>
-          <input type="text" placeholder="Constituency" required>
-          <input type="text" placeholder="Ward" required>
+          <input type="text" name="boxNo" placeholder="Box No#" required>
+          <input type="text" name="postalCode" placeholder="Postal code" required>
+          <input type="text" name="county" placeholder="County" required>
+          <input type="text" name="town" placeholder="Town/city" required>
+          <input type="text" name="constituency" placeholder="Constituency" required>
+          <input type="text" name="ward" placeholder="Ward" required>
           <button type="button" onclick="prevStep()">Back</button>
           <button type="button" onclick="nextStep()">Next</button>
         </div>
@@ -100,13 +98,13 @@
         <!-- Step 3 -->
         <div class="step">
           <h2>Step 3: Preferences</h2>
-          <select required>
+          <select name="role" required>
             <option value="">User Role</option>
             <option value="Farmer">Farmer</option>
             <option value="Buyer">Buyer</option>
             <option value="Extension Officer">Extension Officer</option>
           </select>
-          <select required>
+          <select name="interest" required>
             <option value="">Select Interest</option>
             <option value="livestock">Livestock</option>
             <option value="crop">Crop Farming</option>
@@ -118,11 +116,10 @@
 
         <!-- Step 4 -->
         <div class="step">
-          <h2>Step 4: Preferences & Profile Picture</h2>
-          
-          <label for="interest">Username</label>
-          <input type="text" placeholder="Username" required>
+          <h2>Step 4: Username</h2>
+          <input type="text" name="username" placeholder="Username" required>
 
+          <!-- Profile picture section commented out to avoid 'files' error -->
           <!--
           <label for="profilePicture" style="margin-top: 15px; display: block;">Upload Profile Picture:</label>
           <input 
@@ -130,10 +127,8 @@
             id="profilePicture" 
             name="profilePicture" 
             accept="image/*" 
-            required
             onchange="previewImage(event)"
           />
-
           <div style="margin-top: 10px;">
             <img id="imagePreview" src="#" alt="Profile Preview" style="display:none; max-width: 150px; max-height: 150px; border-radius: 50%; object-fit: cover;"/>
           </div>
@@ -147,23 +142,78 @@
     </div>
   </div>
 
-  <script src="scripts/profile.js"></script>
   <script>
     function toggleSidebar() {
       document.getElementById("sidebar").classList.toggle("active");
     }
 
-    function previewImage(event) {
-      const preview = document.getElementById('imagePreview');
-      const file = event.target.files[0];
-      if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = 'block';
-      } else {
-        preview.src = '#';
-        preview.style.display = 'none';
+    function goToStep(stepIndex) {
+      const steps = document.querySelectorAll(".step");
+      steps.forEach((step, i) => {
+        step.classList.toggle("active", i === stepIndex);
+      });
+    }
+
+    function nextStep() {
+      const current = document.querySelector(".step.active");
+      const next = current.nextElementSibling;
+      if (next && next.classList.contains("step")) {
+        current.classList.remove("active");
+        next.classList.add("active");
       }
     }
+
+    function prevStep() {
+      const current = document.querySelector(".step.active");
+      const prev = current.previousElementSibling;
+      if (prev && prev.classList.contains("step")) {
+        current.classList.remove("active");
+        prev.classList.add("active");
+      }
+    }
+
+    // Save profile to Firestore
+    document.getElementById("profileForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const userData = {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        dob: form.dob.value,
+        email: form.email.value,
+        idNo: form.idNo.value,
+        gender: form.gender.value,
+        maritalStatus: form.maritalStatus.value,
+        phone: form.phone.value,
+        boxNo: form.boxNo.value,
+        postalCode: form.postalCode.value,
+        county: form.county.value,
+        town: form.town.value,
+        constituency: form.constituency.value,
+        ward: form.ward.value,
+        role: form.role.value,
+        interest: form.interest.value,
+        username: form.username.value,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      };
+
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          alert("You must be logged in to complete profile setup.");
+          return;
+        }
+
+        await db.collection("profiles").doc(user.uid).set(userData);
+
+        alert("Profile saved successfully!");
+        window.location.href = "view-profile.html"; // redirect after save
+      } catch (error) {
+        console.error("Error saving profile:", error);
+        alert("Error: " + error.message);
+      }
+    });
   </script>
 </body>
 </html>

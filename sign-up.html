@@ -59,13 +59,30 @@
         const user = userCredential.user;
         console.log("User registered:", user);
 
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+      // Save user profile to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+      });
+=======
+        // Save user profile to Firestore in 'profiles' collection
+        await setDoc(doc(db, "records", user.uid), {
+=======
         // Save user profile to Firestore in 'profiles' collection
         await setDoc(doc(db, "profiles", user.uid), {
+>>>>>>> origin/main
           firstName: firstName,
           lastName: lastName,
           email: email,
           createdAt: new Date().toISOString()
         });
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
 
         // Success feedback
         document.getElementById("success-message").textContent = "Registration successful! Please log in.";
