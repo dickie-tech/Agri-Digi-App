@@ -1,85 +1,82 @@
 let currentStep = 0;
 const steps = document.querySelectorAll(".step");
 
-function showStep(index) {
+function showStep(stepIndex) {
   steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
+    step.classList.toggle("active", i === stepIndex);
   });
-
-  document.querySelectorAll(".step-tab").forEach((tab, i) => {
-    tab.classList.toggle("active", i === index);
-  });
-
-  currentStep = index;
 }
 
 function nextStep() {
   if (currentStep < steps.length - 1) {
-    showStep(currentStep + 1);
+    currentStep++;
+    showStep(currentStep);
   }
 }
 
 function prevStep() {
   if (currentStep > 0) {
-    showStep(currentStep - 1);
+    currentStep--;
+    showStep(currentStep);
   }
 }
 
-function goToStep(index) {
-  showStep(index);
+function goToStep(stepIndex) {
+  currentStep = stepIndex;
+  showStep(stepIndex);
 }
 
-// Handle form submission
 document.getElementById("profileForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const form = e.target;
-  const profilePic = document.getElementById("profilePicture").files[0];
-
   const userData = {
-    firstName: form[0].value,
-    lastName: form[1].value,
-    dob: form[2].value,
-    email: form[3].value,
-    idNo: form[4].value,
-    gender: form[5].value,
-    maritalStatus: form[6].value,
-    phoneNumber: form[7].value,
-
-    boxNo: form[8].value,
-    postalCode: form[9].value,
-    county: form[10].value,
-    town: form[11].value,
-    constituency: form[12].value,
-    ward: form[13].value,
-
-    userRole: form[14].value,
-    interest: form[15].value,
-    username: form[16].value,
-    profilePicUrl: ""
+    firstName: form.firstName.value,
+    lastName: form.lastName.value,
+    dob: form.dob.value,
+    email: form.email.value,
+    idNo: form.idNo.value,
+    gender: form.gender.value,
+    maritalStatus: form.maritalStatus.value,
+    phone: form.phone.value,
+    boxNo: form.boxNo.value,
+    postalCode: form.postalCode.value,
+    county: form.county.value,
+    town: form.town.value,
+    constituency: form.constituency.value,
+    ward: form.ward.value,
+    role: form.role.value,
+    interest: form.interest.value,
+    username: form.username.value,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
   };
 
   try {
-    // Upload profile picture if exists
-    if (profilePic) {
-      const storageRef = firebase.storage().ref(`profile_pictures/${userData.username}_${Date.now()}`);
-      await storageRef.put(profilePic);
-      const downloadURL = await storageRef.getDownloadURL();
-      userData.profilePicUrl = downloadURL;
+    const user = auth.currentUser;
+    if (!user) {
+      alert("You must be logged in to complete profile setup.");
+      return;
+    }
+
+    // Upload profile picture
+    const fileInput = document.getElementById("profilePicture");
+    const file = fileInput?.files[0];
+    let photoURL = "";
+
+    if (file) {
+      const storageRef = storage.ref(`profilePictures/${user.uid}`);
+      await storageRef.put(file);
+      photoURL = await storageRef.getDownloadURL();
+      userData.photoURL = photoURL;
     }
 
     // Save to Firestore
-    const user = firebase.auth().currentUser;
-    const uid = user ? user.uid : `anonymous_${Date.now()}`; // fallback for testing
-
-    await firebase.firestore().collection("users").doc(uid).set(userData);
+    await db.collection("profiles").doc(user.uid).set(userData);
 
     alert("Profile saved successfully!");
-    form.reset();
-    showStep(0);
-    document.getElementById("imagePreview").style.display = "none";
+    window.location.href = "view-profile.html"; // redirect after save
   } catch (error) {
     console.error("Error saving profile:", error);
-    alert("Something went wrong. Please try again.");
+    alert("Error: " + error.message);
   }
 });
