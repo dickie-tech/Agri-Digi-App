@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriDigi - Real-Time Market Access</title>
+    <link rel="stylesheet" href="market.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-left">
+             
+                <span>Welcome to AgriDigi</span>
+                <div class="language-selector">
+                    <i class="fas fa-globe"></i>
+                    <span>English</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="top-header-right">
+                <a href="#" class="top-link">Price Tracking</a>
+                <a href="#" class="top-link">My Watchlist</a>
+                <a href="#" class="top-link">Recent Viewed Products</a>
+                
+            </div>
+        </div>
+    </div>
+    <a href="profile.html"><button class="cta-button2">Back to Profile</button></a>
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                  
+                    <div class="logo-icon">A</div>
+                    <span class="logo-text">agridigi</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" placeholder="Search for products, markets..." class="search-input">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Header Right -->
+                <div class="header-right">
+                    <div class="phone-info">
+                        <i class="fas fa-phone"></i>
+                        <div class="phone-details">
+                            <span class="phone-label">Market Hotline</span>
+                            <span class="phone-number">+254 700 123 456</span>
+                        </div>
+                    </div>
+                    <div class="account-section">
+                        <i class="fas fa-user"></i>
+                        <div class="account-details">
+                            <span class="account-label">Account</span>
+                            <span class="account-action">Login/Register</span>
+                        </div>
+                    </div>
+                    <div class="cart-section">
+                        <i class="fas fa-heart"></i>
+                        <span class="cart-text">Watchlist</span>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active">Home <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#" class="nav-link">Markets <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#" class="nav-link">Counties <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#" class="nav-link">Cereals <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#" class="nav-link">Livestock <i class="fas fa-chevron-down"></i></a></li>
+                <li><a href="#" class="nav-link">Price Alerts</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Real-Time Market Prices &<br>Agricultural Products.</h1>
+                    <p>Access live market prices for all your farming needs.</p>
+                    <button class="cta-button">View Prices</button>
+                </div>
+                <div class="hero-image">
+                    <img src="images/1708009028937.jpg" alt="Fresh Agricultural Products">
+                </div>
+            </div>
+            <div class="hero-navigation">
+                <button class="nav-arrow nav-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="nav-arrow nav-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Banner -->
+    <div class="promotion-banner">
+        <div class="container">
+            <span>Real-Time Price Updates On All Markets Over <strong>100+ Products</strong></span>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Top Ranked Markets</h3>
+                    <p>Verified market data from trusted sources across Kenya.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Price Verified</h3>
+                    <p>Real-time price updates from official market sources.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Fast Updates</h3>
+                    <p>Get instant notifications when prices change significantly.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Trusted Sources</h3>
+                    <p>Data from KNBS and verified agricultural markets.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-content">
+                        <span class="discount-badge">Up To 30%</span>
+                        <h3>Fresh Fruit<br>Prices Live</h3>
+                        <p>Current market prices from major counties.</p>
+                        <button class="category-btn">View Prices</button>
+                    </div>
+                    <div class="category-image">
+                        <div class="fruit-placeholder"></div>
+                    </div>
+                </div>
+                
+                <div class="category-card category-green">
+                    <div class="category-content">
+                        <h3>Market Fresh<br>Vegetables<br>For Everyday</h3>
+                        <p>Live pricing updates from county markets.</p>
+                        <button class="category-btn white">View Prices</button>
+                    </div>
+                </div>
+                
+                <div class="category-card category-dark">
+                    <div class="category-content">
+                        <h3>100% Quality<br>Dairy Milk</h3>
+                        <p>Fresh milk pricing across regions.</p>
+                        <button class="category-btn">View Prices</button>
+                    </div>
+                </div>
+                
+                <div class="category-card category-meat">
+                    <div class="category-content">
+                        <span class="discount-badge">Up To 50%</span>
+                        <h3>Meat &<br>Poultry<br>Pricing</h3>
+                        <p>Livestock and poultry market rates.</p>
+                        <button class="category-btn">View Prices</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Market Prices -->
+    <section class="daily-prices-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Daily Market Prices</h2>
+                <a href="#" class="view-all">View all</a>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card featured">
+                    <span class="featured-badge">Featured</span>
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-category">Grain Foods</span>
+                        <h4>Maize White Bananas</h4>
+                        <span class="product-weight">50kg</span>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="product-price">
+                            <span class="old-price">KES 2,800</span>
+                            <span class="current-price">KES 2,500</span>
+                        </div>
+                        <button class="add-to-cart">Add to Watchlist</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">-5%</span>
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-category">Leafing Foods</span>
+                        <h4>Sukuma Wiki Fresh</h4>
+                        <span class="product-weight">50kg</span>
+                        <div class="product-rating">
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                        <div class="product-price">
+                            <span class="old-price">KES 850</span>
+                            <span class="current-price">KES 800</span>
+                        </div>
+                        <button class="add-to-cart">Add to Watchlist</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">-3%</span>
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-category">Grain Foods</span>
+                        <h4>Tesco Green Granules</h4>
+                        <span class="product-weight">400g</span>
+                        <div class="product-rating">
+                            <div class="stars">★★★☆☆</div>
+                        </div>
+                        <div class="product-price">
+                            <span class="old-price">KES 320</span>
+                            <span class="current-price">KES 310</span>
+                        </div>
+                        <button class="add-to-cart">Add to Watchlist</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">-4%</span>
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-category">Dairy Foods</span>
+                        <h4>Brookside Buttermarket</h4>
+                        <span class="product-weight">500g</span>
+                        <div class="product-rating">
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                        <div class="product-price">
+                            <span class="old-price">KES 2,100</span>
+                            <span class="current-price">KES 2,000</span>
+                        </div>
+                        <button class="add-to-cart">Add to Watchlist</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <span class="discount-badge">-5%</span>
+                    <div class="product-image"></div>
+                    <div class="product-info">
+                        <span class="product-category">Sibling Foods</span>
+                        <h4>Tesco Coconut</h4>
+                        <span class="product-weight">500g</span>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="product-price">
+                            <span class="old-price">KES 940</span>
+                            <span class="current-price">KES 890</span>
+                        </div>
+                        <button class="add-to-cart">Add to Watchlist</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-navigation">
+                <button class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+                <button class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="bottom-cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-image">
+                    <div class="discount-circle">
+                        <span>Up to<br><strong>45% Off</strong></span>
+                    </div>
+                </div>
+                <div class="cta-text">
+                    <h2>Agricultural Products Everyday</h2>
+                    <p class="cta-subtitle">Your online resource of market prices.</p>
+                    <p>Access real-time market data for all agricultural products. Get instant price updates from verified sources across Kenya's major markets and counties.</p>
+                    <button class="cta-button">View Prices</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="scripts/market.js"></script>
+</body>
+</html>

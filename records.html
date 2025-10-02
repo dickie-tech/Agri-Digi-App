@@ -12,7 +12,6 @@
       padding: 10px;
       display: flex;
       flex-direction: column;
-      margin-top: -300px;
     }
 
     .menu-toggle {
@@ -52,12 +51,11 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
-      
+      margin-top: -30px;
     }
 
     .record-header h2 {
       margin: 0;
-      margin-top: -30px;
     }
 
     .controls {
@@ -80,9 +78,11 @@
       border: none;
       margin-left: 200px;
     }
-    .record-table{
+
+    .record-table {
       margin-right: 900px;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -90,7 +90,6 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
       margin-top: 20px;
       margin-right: 100px;
-      
     }
 
     th, td {
@@ -154,12 +153,10 @@
       .main {
         margin-left: 0;
         padding: 20px;
-        margin-top: -200px;
       }
-      .add-record-btn{
+      .add-record-btn {
         margin-left: 40px;
       }
-      
     }
   </style>
 </head>
@@ -219,10 +216,12 @@
     </div>
   </div>
 
+  <!-- Firebase compat SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
   <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
@@ -332,43 +331,42 @@
     });
 
     async function downloadSpreadsheet() {
-  try {
-    const snapshot = await db.collection("records")
-      .doc(currentUser.uid)
-      .collection("items")
-      .orderBy("date", "desc")
-      .get();
+      try {
+        const snapshot = await db.collection("records")
+          .doc(currentUser.uid)
+          .collection("items")
+          .orderBy("date", "desc")
+          .get();
 
-    const data = [];
-    snapshot.forEach(doc => {
-      const d = doc.data();
-      const matchSummary = d.summary?.toLowerCase().includes(searchInput.value.toLowerCase());
-      const matchType = !filterType.value || d.type === filterType.value;
-      if (matchSummary && matchType) {
-        data.push({
-          Type: d.type,
-          Date: d.date,
-          Summary: d.summary
+        const data = [];
+        snapshot.forEach(doc => {
+          const d = doc.data();
+          const matchSummary = d.summary?.toLowerCase().includes(searchInput.value.toLowerCase());
+          const matchType = !filterType.value || d.type === filterType.value;
+          if (matchSummary && matchType) {
+            data.push({
+              Type: d.type,
+              Date: d.date,
+              Summary: d.summary
+            });
+          }
         });
+
+        if (data.length === 0) {
+          alert("No records to export based on your current filter/search.");
+          return;
+        }
+
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Farm Records");
+
+        XLSX.writeFile(workbook, "Farm_Records.xlsx");
+      } catch (error) {
+        console.error("Error exporting spreadsheet:", error);
+        alert("Failed to download spreadsheet.");
       }
-    });
-
-    if (data.length === 0) {
-      alert("No records to export based on your current filter/search.");
-      return;
     }
-
-    const worksheet = XLSX.utils.json_to_sheet(data);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Farm Records");
-
-    XLSX.writeFile(workbook, "Farm_Records.xlsx");
-  } catch (error) {
-    console.error("Error exporting spreadsheet:", error);
-    alert("Failed to download spreadsheet.");
-  }
-}
-
   </script>
 </body>
 </html>

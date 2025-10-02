@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agri-Digi Registration</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="sign-up.css">
-    <!-- Firebase SDK v9 -->
-    <script type="module">
-  // Import Firebase functions
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-  import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agri-Digi Registration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="sign-up.css" />
+  <!-- Firebase SDK v9 -->
+  <script type="module">
+    // Import Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+    import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
-  // Initialize Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
-    authDomain: "agri-digi.firebaseapp.com",
-    projectId: "agri-digi",
-    storageBucket: "agri-digi.firebasestorage.app",
-    messagingSenderId: "75045066424",
-    appId: "1:75045066424:web:2f811fdd1347020fc4064d",
-    measurementId: "G-PV6WEHB1FV"
-  };
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDoJnrBj36VbxxlP_UW0Fqg4kHSQehlKmk",
+      authDomain: "agri-digi.firebaseapp.com",
+      projectId: "agri-digi",
+      storageBucket: "agri-digi.firebasestorage.app",
+      messagingSenderId: "75045066424",
+      appId: "1:75045066424:web:2f811fdd1347020fc4064d",
+      measurementId: "G-PV6WEHB1FV"
+    };
 
-  // Initialize Firebase app
-  const app = initializeApp(firebaseConfig);
+    // Initialize Firebase app
+    const app = initializeApp(firebaseConfig);
 
-  // Initialize Firebase Auth
-  const auth = getAuth(app);
+    // Initialize Firebase Auth
+    const auth = getAuth(app);
 
-  // Initialize Firestore
-  const db = getFirestore(app);
+    // Initialize Firestore
+    const db = getFirestore(app);
 
-  // Register user function
-  async function registerUser(event) {
-    event.preventDefault();
+    // Register user function
+    async function registerUser(event) {
+      event.preventDefault();
 
-    // Get form input values
-    const firstName = document.getElementById('register-first-name').value;
-    const lastName = document.getElementById('register-last-name').value;
-    const email = document.getElementById('register-address').value;
-    const password = document.getElementById('register-password').value;
+      // Get form input values
+      const firstName = document.getElementById("register-first-name").value.trim();
+      const lastName = document.getElementById("register-last-name").value.trim();
+      const email = document.getElementById("register-address").value.trim();
+      const password = document.getElementById("register-password").value;
 
-    // Clear messages
-    document.getElementById("error-message").textContent = "";
-    document.getElementById("success-message").textContent = "";
+      // Clear messages
+      document.getElementById("error-message").textContent = "";
+      document.getElementById("success-message").textContent = "";
 
-    // Show loading
-    const loadingIndicator = document.getElementById("loading-indicator");
-    loadingIndicator.style.display = "block";
+      // Show loading
+      const loadingIndicator = document.getElementById("loading-indicator");
+      loadingIndicator.style.display = "block";
 
-    try {
-      // Attempt to create a new user with Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log("User registered:", user);
+      try {
+        // Create new user with Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        console.log("User registered:", user);
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       // Save user profile to Firestore
       await setDoc(doc(db, "users", user.uid), {
@@ -69,74 +70,77 @@
 =======
         // Save user profile to Firestore in 'profiles' collection
         await setDoc(doc(db, "records", user.uid), {
+=======
+        // Save user profile to Firestore in 'profiles' collection
+        await setDoc(doc(db, "profiles", user.uid), {
+>>>>>>> origin/main
           firstName: firstName,
           lastName: lastName,
           email: email,
           createdAt: new Date().toISOString()
         });
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> origin/main
 
-      // Success feedback
-      document.getElementById("success-message").textContent = "Registration successful! Please log in.";
-    } catch (error) {
-      console.error("Error during registration:", error.message);
-      document.getElementById("error-message").textContent = "Error: " + error.message;
+        // Success feedback
+        document.getElementById("success-message").textContent = "Registration successful! Please log in.";
+        
+        // Optionally, clear form fields
+        event.target.reset();
+
+      } catch (error) {
+        console.error("Error during registration:", error.message);
+        document.getElementById("error-message").textContent = "Error: " + error.message;
+      } finally {
+        // Hide loading
+        loadingIndicator.style.display = "none";
+      }
     }
 
-    // Hide loading
-    loadingIndicator.style.display = "none";
-  }
-
-  // Bind the registration function to the form submit event
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', registerUser);
-  });
-</script>
-
-
+    // Bind the registration function to the form submit event
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector("form");
+      form.addEventListener("submit", registerUser);
+    });
+  </script>
 </head>
-
 <body>
   <div class="container">
     <div class="logo-container">
-        <img class="brand-logo" src="images/AGRI-DIGI CBO Logo with Yellows and Greens2.png" alt="Logo">
-        <img class="logo-agri" src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Logo">
+      <img class="brand-logo" src="images/AGRI-DIGI CBO Logo with Yellows and Greens2.png" alt="Logo" />
+      <img class="logo-agri" src="images/AGRI-DIGI CBO Logo with Yellows and Greens.png" alt="Logo" />
     </div>
     <div class="register-container">
-        
-        <h2>🌿Welcome to AGRI-DIGI</h2>
-        <h2>Register🤗</h2>
-        <form>
-            <label for="register-first-name">First Name:</label>
-            <input type="text" id="register-first-name" required><br>
-            
-            <label for="register-last-name">Last Name:</label>
-            <input type="text" id="register-last-name" required><br>
+      <h2>🌿Welcome to AGRI-DIGI</h2>
+      <h2>Register🤗</h2>
+      <form>
+        <label for="register-first-name">First Name:</label>
+        <input type="text" id="register-first-name" required /><br />
 
-            <label for="register-address">Email Address:</label>
-            <input type="email" id="register-address" required><br>
-            
-            <label for="register-password">Password:</label>
-            <input type="password" id="register-password" required minlength="6"><br>
+        <label for="register-last-name">Last Name:</label>
+        <input type="text" id="register-last-name" required /><br />
 
-            <button type="submit">Register</button>
-            <div id="loading-indicator" class="loading" style="display: none;">
-            Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
-            </div>
-            
-            <div class="error-message" id="error-message"></div>
-            <div class="success-message" id="success-message"></div>
-        </form>
+        <label for="register-address">Email Address:</label>
+        <input type="email" id="register-address" required /><br />
 
-        <div class="sign-up-link">
-            <p>👉If you already have an account, <a href="login.html">login here</a></p>
+        <label for="register-password">Password:</label>
+        <input type="password" id="register-password" required minlength="6" /><br />
+
+        <button type="submit">Register</button>
+        <div id="loading-indicator" class="loading" style="display: none;">
+          Loading<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
         </div>
+
+        <div class="error-message" id="error-message"></div>
+        <div class="success-message" id="success-message"></div>
+      </form>
+
+      <div class="sign-up-link">
+        <p>👉If you already have an account, <a href="login.html">login here</a></p>
+      </div>
     </div>
   </div>
-  <script>
-    
-
-  </script>
 </body>
 </html>
